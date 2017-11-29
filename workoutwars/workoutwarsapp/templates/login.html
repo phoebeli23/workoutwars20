@@ -1,10 +1,22 @@
+{% extends "base.html" %}
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+<div class="">
+    <div id="login-page" class="row">
+            <div class="input-field col s12 center">
+                <img id="crown" src="/static/images/crown.svg" alt class="responsive-img valign profile-image-login"/>
+                <p class="center login-form-test">Pie Queens Workout Wars 2018</p>
+            </div>
+        <div class="col s12 m4 offset-m4 z-depth-4 card-panel center valign">
+  <form class="login-form" method="post">
+      <div class="row margin">
+          {% csrf_token %}
+          {{ form.as_p }}
+      </div>
+    <button type="button" class="btn btn-primary purple darken-4" id="login-btn" type="submit">Login</button>
   </form>
+</div>
+  </div>
+</div>
 {% endblock %}
