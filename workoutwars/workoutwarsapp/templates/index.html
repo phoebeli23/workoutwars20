@@ -1,11 +1,9 @@
 <!-- workoutwarsapp/templates/index.html -->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Workout Wars</title>
-    </head>
-    <body>
-        <h1>Pie Queens 2017-2018 Workout Wars</h1>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Pie Queens 2017-2018 Workout Wars</h1>
+</div>
+{% endblock %}

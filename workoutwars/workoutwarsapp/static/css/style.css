@@ -1,0 +1,56 @@
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {
+}
+
+h1, h2 {
+    color: purple;
+}
+
+html {
+  background: url(/static/images/bg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#content p {
+    color: #662d91;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #4a148c;
+-webkit-box-shadow: 0 1px 0 0 #4a148c;
+box-shadow: 0 1px 0 0 #4a148c;
+}
+
+#id_username, #id_password {
+    color: black;
+}
+
+#crown {
+    height: 100px;
+}
+
+#login-btn {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    margin: 25px 40px;
+}
