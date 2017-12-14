@@ -24,10 +24,14 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+            user = form.save()
+            user.refresh_from_db() # load the profile instance created by the signals
+            user.profile.nick_name = form.cleaned_data.get('nick_name')
+            user.profile.class_name = form.cleaned_data.get('class_name')
+            user.profile.team = form.cleaned_data.get('team')
+            user.save()
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(username=user.username, password=raw_password)
             login(request, user)
             return redirect('/')
     else:
