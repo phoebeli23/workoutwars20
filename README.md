@@ -9,8 +9,6 @@ _insert instructions for forking/cloning git repo here_
 _insert instructions for setting up environment here_
 
 ### Launching Application Locally
-_insert instructions for launching application here_
-
 Launching the app locally is very simple. You simply need to prepare a few things before the app will run for the first time.
 1. Prepare your models for the database by running the command: `python manage.py makemigrations`
 2. Set up the database by loading the model files into sqlite using `python manage.py migrate`
@@ -20,18 +18,21 @@ Launching the app locally is very simple. You simply need to prepare a few thing
 Django makes loading initial data into an application very simple. Because players will create their own accounts and log their own workouts, the only data you need initially will be the team names, class names, and exercise details. In order to do this, we will be using Django fixtures.
 
 Teams
+
 ID | name
 --- | ---
 1 | Team 1 Name
 2 | Team 2 Name
 
 Classes
+
 ID | name | plural
 --- | ---
 1 | Freshman | Freshmen
 2 | Sophomore | Sophomores
 
 Exercises
+
 ID | description | notes | increment | measurement | multiplier
 --- | --- | --- | --- | --- | ---
 1 | downhill skiing | enter time on mountain only | 15 | mins | 1.25
