@@ -41,7 +41,7 @@ ID | description | notes | increment | measurement | multiplier
 2. Place these csv files into the `fixtures` folder (inside `workoutwarsapp`)
 3. Activate your virtual environment (instructions listed above, if necessary)
 4. Install simplejson by running `conda install simplejson`
-5. `cd` into the `fixtures` folder and create json files by running `python csv2json teams.csv workoutwarsapp.team`. Repeat for `class` and `exercise`
+5. `cd` into the `fixtures` folder and create json files by running `python csv2json.py teams.csv workoutwarsapp.team`. Repeat for `class` and `exercise`
 6. `cd` back into the `workoutwars` folder (run `cd ..`)
 7. load data by running `python manage.py loaddata teams.json` (repeating for classes & exercises). You should see `Installed xx object(s) from 1 fixture(s)`
 
