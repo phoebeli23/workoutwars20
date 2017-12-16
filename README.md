@@ -27,7 +27,7 @@ ID | name
 Classes
 
 ID | name | plural
---- | ---
+--- | --- | ---
 1 | Freshman | Freshmen
 2 | Sophomore | Sophomores
 
@@ -63,43 +63,27 @@ This app uses sqlite3 as its database, with 5 simple tables.
 
 When you look into the `workoutwars` folder, you will find a series of files and directories that are used by django to create and run your application. Below is a diagram of your document structure.
 
-`workoutwars`
-
-├── `workoutwars` -- main project folder
-
-│        ├── `__init__.py`
-
-│        ├── `settings.py` -- project settings
-
-│        ├── `urls.py` -- project url routes
-
-│        └── `wsgi.py`
-
-├── `workoutwarsapp`
-
-│        ├── `migrations` -- directory used by django to preserve data during database updates
-
-│        └── `static.py` -- directory used to store static files
-
-│        ├── `templates` -- directory that stores our HTML templates
-
-│        ├── `__init__.py`
-
-│        ├── `admin.py`
-
-│        ├── `apps.py`
-
-│        └── `forms.py`
-
-│        ├── `models.py`
-
-│        ├── `tests.py`
-
-│        ├── `urls.py` -- app url routes
-
-│        └── `views.py
-
-└── `manage.py`
+```
+workoutwars
+├── workoutwars -- main project folder
+│        ├── __init__.py
+│        ├── settings.py -- project settings
+│        ├── urls.py -- project url routes
+│        └── wsgi.py
+├── workoutwarsapp
+│        ├── migrations -- directory used by django to preserve data during database updates
+│        └── static -- directory used to store static files
+│        ├── templates -- directory that stores our HTML templates
+│        ├── __init__.py
+│        ├── admin.py
+│        ├── apps.py
+│        └── forms.py
+│        ├── models.py
+│        ├── tests.py
+│        ├── urls.py -- app url routes
+│        └── views.py
+└── manage.py
+```
 
 ### Django Basiccs
 _insert basic django explanation here (e.g. views, models, etc.)_
