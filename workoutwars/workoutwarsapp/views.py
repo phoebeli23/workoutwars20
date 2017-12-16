@@ -29,6 +29,8 @@ def signup(request):
             user.profile.nick_name = form.cleaned_data.get('nick_name')
             user.profile.class_name = form.cleaned_data.get('class_name')
             user.profile.team = form.cleaned_data.get('team')
+            if not user.profile.nick_name:
+                user.profile.nick_name = user.first_name + " " + user.last_name
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
