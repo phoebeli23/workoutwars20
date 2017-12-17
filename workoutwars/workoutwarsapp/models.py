@@ -12,14 +12,22 @@ from django.utils import timezone
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nick_name = models.CharField(max_length=30)
-    class_name = models.ForeignKey('Class', on_delete=models.CASCADE)
-    team = models.ForeignKey('Team', on_delete=models.CASCADE, blank=True)
+    class_name = models.ForeignKey('Class',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True # nullable to allow createsuperuser command
+        )
+    team = models.ForeignKey('Team',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True # nullable to allow createsuperuser command
+        )
 
     def __unicode__(self):
         return '{}'.format(self.name)
 
     def __str__(self):
-        return self.nick_name
+        return '{}'.format(self.name)
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
@@ -34,7 +42,7 @@ class Team(models.Model):
         return '{}'.format(self.name)
 
     def __str__(self):
-        return self.name
+        return '{}'.format(self.name)
 
 class Class(models.Model):
     name = models.CharField(max_length=30)
@@ -44,7 +52,7 @@ class Class(models.Model):
         return '{}'.format(self.name)
 
     def __str__(self):
-        return self.name
+        return '{}'.format(self.name)
 
 class Exercise(models.Model):
     description = models.CharField(max_length=60)
@@ -63,7 +71,7 @@ class Exercise(models.Model):
         return '{}'.format(self.description)
 
     def __str__(self):
-        return self.description
+        return '{}'.format(self.description)
 
 class Workout(models.Model):
     workout_date = models.DateField(default = timezone.now)
@@ -91,4 +99,8 @@ class Workout(models.Model):
           )
 
     def __str__(self):
-        return self.user + " " + self.workout_date + " | " + self.score
+        return '{0} | {1:%b - %d} | Score = {2:.2f}'.format(
+            self.user,
+            self.workout_date,
+            self.score,
+          )
