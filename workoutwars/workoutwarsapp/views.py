@@ -3,11 +3,13 @@ from __future__ import unicode_literals
 
 # workoutwarsapp/views.py
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.views.generic import TemplateView
 
-from workoutwarsapp.forms import SignUpForm
+from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
 
 # Home page view
 class HomePageView(TemplateView):
@@ -39,3 +41,16 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+@login_required
+def addworkout(request):
+    if request.method == 'POST':
+        form = AddWorkoutForm(request.POST)
+        if form.is_valid():
+            workout = form.save(commit=False)
+            workout.user = request.user
+            workout.save()
+            return redirect('/')
+    else:
+        form = AddWorkoutForm()
+    return render(request, 'add.html', {'form': form})
