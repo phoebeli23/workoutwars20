@@ -2,20 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
-    <!-- Compiled and minified JavaScript -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <meta charset="utf-8"> -->
     <title>Workout Wars</title>
-</head>
-<body>
-    <!-- <div id="bg">
-        <img src="{% static "images/bg.png" %}" alt="PQ"/>
-    </div> -->
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-</body>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <body>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
 </html>
