@@ -24,10 +24,10 @@ class Profile(models.Model):
         )
 
     def __unicode__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.nick_name)
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.nick_name)
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
@@ -92,7 +92,7 @@ class Workout(models.Model):
         return s
 
     def __unicode__(self):
-        return '{0} | {1:%b-%d} | Score={2}'.format(
+        return '{0} | {1:%b-%d} | Score={2:.2f}'.format(
             self.user,
             self.workout_date,
             self.score,
