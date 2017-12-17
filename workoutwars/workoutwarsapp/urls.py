@@ -11,4 +11,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup',),
+
+    # workout pages
+    url(r'^add/$', views.addworkout, name='add',),
 ]
