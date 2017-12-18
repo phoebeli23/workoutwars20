@@ -5,23 +5,57 @@ from __future__ import unicode_literals
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
+from django.template import RequestContext
 from django.utils import timezone
 from django.views.generic import TemplateView
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
+from workoutwarsapp.models import Profile, Class, Team, Exercise, Workout
 
-# Home page view
+# Page views
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
 
-# Can also use the following format (a get request will
-# automatically use this template):
-# class HomePageView(TemplateView):
-#     template_name = "about.html"
+def scoreboard(request):
+    classes = Class.objects.all()
+    class_scores = []
+    class_chart_data = []
+    teams = Team.objects.all()
+    team_scores = []
 
-# Authentication views
+    for c in classes:
+        c_workouts = Workout.objects.filter(user__profile__class_name=c)
+        c_score = sum([workout.score for workout in c_workouts])
+        c_count = len(Profile.objects.filter(class_name=c))
+        if c_count == 0:
+            c_normalized = 0
+        else:
+            c_normalized = c_score / c_count
+        class_scores.append([c.plural, round(c_score), round(c_normalized)])
+        class_chart_data.append([str(c.plural), round(c_normalized)])
+
+    for t in teams:
+        t_workouts = Workout.objects.filter(user__profile__team=t)
+        t_score = sum([workout.score for workout in t_workouts])
+        t_count = len(Profile.objects.filter(team=t))
+        if t_count == 0:
+            t_normalized = 0
+        else:
+            t_normalized = t_score / t_count
+        team_scores.append([t.name, round(t_score), round(t_normalized)])
+
+    return render(request,
+        'scoreboard.html',
+        {
+            'class_scores': class_scores,
+            'class_chart_data': class_chart_data,
+            'team_scores': team_scores
+        }
+    )
+
+# Form views
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -37,7 +71,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect('/')
+            return redirect('scoreboard')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -50,7 +84,7 @@ def addworkout(request):
             workout = form.save(commit=False)
             workout.user = request.user
             workout.save()
-            return redirect('/')
+            return redirect('scoreboard')
     else:
         form = AddWorkoutForm()
     return render(request, 'add.html', {'form': form})

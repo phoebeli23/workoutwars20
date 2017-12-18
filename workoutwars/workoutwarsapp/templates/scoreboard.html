@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      // Create the data table.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Class');
+      data.addColumn('number', 'Score');
+      data.addRows({{class_chart_data|safe}});
+
+      // Set chart options
+      var options = {
+        width: "80%",
+        colors: ['purple'],
+        bar: {groupWidth: "95%"},
+        legend: {position: "none" },
+        };
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+{% endblock %}
+
+{% block content %}
+  <h1>Scoreboards</h1>
+
+  {% if team_scores %}
+    <h2>Points Earned by Team</h2>
+    <table
+      class="table"
+      style="max-width:700px; table-layout : fixed;"
+      >
+      <thead style="font-size:larger">
+        <tr>
+          <th>Team</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for team_name, team_score, team_normalized in team_scores %}
+          <tr>
+          <th>{{ team_name }}</th>
+          <th>{{ team_score }}</th>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  {% if class_scores %}
+    <h2>Points Earned by Year</h2>
+    <p>Score by class per person</p>
+    <div id="chart_div" style="max-width:700px;"></div>
+    <table
+      class="table"
+      style="max-width:700px; table-layout : fixed;"
+      >
+      <thead style="font-size:larger">
+        <tr>
+          <th></th>
+          {% for class_name, class_score, class_normalized in class_scores %}
+            <th>{{ class_name }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Total</th>
+        {% for class_name, class_score, class_normalized in class_scores %}
+          <th>{{ class_score }}</th>
+        {% endfor %}
+        </tr>
+          <tr>
+            <th>Normalized</th>
+          {% for class_name, class_score, class_normalized in class_scores %}
+            <th>{{ class_normalized }}</th>
+          {% endfor %}
+          </tr>
+      </tbody>
+    </table>
+  {% endif %}
+
+  <h3>Feeling inspired?</h3>
+  <p>Go work out, and then <a href="{% url 'add' %}">submit your workout! </a></p>
+{% endblock %}
