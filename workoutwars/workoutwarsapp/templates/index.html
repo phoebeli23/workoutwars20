@@ -1,7 +1,86 @@
 <!-- workoutwarsapp/templates/index.html -->
 {% extends "base.html" %} {% block title %}Index{% endblock %} {% block content %}
 <div class="container">
-    <h1>Welcome to Workout Wars!</h1>
+    <div class="jumbotron">
+        <h1 class="display-3">Welcome to Workout Wars!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        {% if user.is_authenticated %}
+        {% else %}
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/login" role="button">Let's go!</a>
+        </p>
+        {% endif %}
+    </div>
     <p>{{ request.user.profile.nick_name }}</p>
+    <table class="table table-dark table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Exercise</th>
+      <th scope="col">Increment</th>
+      <th scope="col">Measurement</th>
+      <th scope="col">Multiplier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">Abs, Plyos for Stretching (dynamic warmup), Static Stretching/Foam Rolling</td>
+      <td>15</td>
+      <td>mins</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td scope="row">Push-Ups</td>
+      <td>30</td>
+      <td>reps</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td scope="row">Hiking, Plyometrics (squats, lunges, etc.), Downhill Skiing/Snowboarding, Badminton
+      Biking, </td>
+      <td>15</td>
+      <td>mins</td>
+      <td>1.25</td>
+    </tr>
+    <tr>
+      <td scope="row">Burpees</td>
+      <td>20</td>
+      <td>reps</td>
+      <td>1.25</td>
+    </tr>
+    <tr>
+      <td scope="row">Tabatas (Non-Sprinting)</td>
+      <td>4</td>
+      <td>mins</td>
+      <td>1.25</td>
+    </tr>
+    <tr>
+      <td scope="row">Cross Country Skiing, Elliptical, Physical Therapy, Pilates, Rollerblading/Ice Skating, Running, Throwing, Yoga, Zumba</td>
+      <td>15</td>
+      <td>mins</td>
+      <td>1.5</td>
+    </tr>
+    <tr>
+      <td scope="row">Agility Drills (cones/ladders), Basketball, Climbing/Bouldering, CrossFit, Hill Sprints, Hockey, Jump Roping, Kayaking/Paddling, Kickboxing,
+      Kung Fu/Zen Throwing, Lifting/Weight Training, P90x or Insanity Workout, Rowing, Soccer, Spin Class, Sprints, Stadiums/Stairs, Swimming, Tennis, Track Workout, Volleyball</td>
+      <td>15</td>
+      <td>mins</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <td scope="row">Sprinting/Spinning Tabatas</td>
+      <td>4</td>
+      <td>mins</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <td scope="row">Frisbee (beach, goaltie, pick-up), Fun with Friends Drills (2+ people)</td>
+      <td>15</td>
+      <td>mins</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 {% endblock %}

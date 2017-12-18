@@ -8,9 +8,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Custom CSS -->
+    <!-- Custom JS and CSS -->
     <link rel="stylesheet" href="{% static "css/style.css" %}">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap -->
     {# Load the tag library #}
     {% load bootstrap4 %}
@@ -19,18 +19,21 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
+    <script type="text/javascript" src="{% static "js/script.js" %}"></script>
+
 <body>
-    <div id="content">
         {% if user.is_authenticated %}
 
-        <nav class="navbar navbar-expand-lg" style="background-color: #563d7c; color: white;">
-            <a class="navbar-brand" href="/">PQ Workout Wars '17</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #563d7c; color: white;">
+            <a class="navbar-brand" href="/">
+                <img src="{% static "images/crown.svg" %}" width="30" height="30" alt="">
+                 PQ Workout Wars '18</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
                 </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto w-100 justify-content-end">
-                    <li class="nav-item active">
+                <ul class="navbar-nav ml-auto w-100 justify-content-end bd-navbar-nav flex-row">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Scoreboard</a>
                     </li>
                     <li class="nav-item">
@@ -41,25 +44,24 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-    {{ request.user.profile.nick_name }}
-    </span>
+                    {{ request.user.profile.nick_name }}
+                </span>
             </div>
         </nav>
 
 {% else %}
 
-<nav class="navbar navbar-expand-lg" style="background-color: #563d7c; color: white;">
-    <a class="navbar-brand" href="/">PQ Workout Wars '17</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #563d7c; color: white;">
+    <a class="navbar-brand" href="/">
+        <img src="{% static "images/crown.svg" %}" width="30" height="30" alt="">
+        PQ Workout Wars '18</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto w-100 justify-content-end">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Scoreboard<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signup">Sign Up</a>
+            <li class="nav-ite">
+                <a class="nav-link" href="#">Scoreboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/login">Log In</a>
@@ -69,7 +71,7 @@
 </nav>
 
 {% endif %}
-
+    <div id="content">
         {% block content %}{% endblock %}
     </div>
 </body>

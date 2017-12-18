@@ -5,7 +5,6 @@
 <div class="container">
     <div id="login-page" class="row justify-content-md-center">
         <div class="col-sm-12 col-md-4">
-            <p class="center login-form-test">Pie Queens Workout Wars 2018</p>
             <form class="form" method="post">
                 {% csrf_token %}
                 {% bootstrap_form form %}
@@ -13,6 +12,7 @@
                 <button class="btn btn-primary" id="login-btn" type="submit">Login
                 {% endbuttons %}
             </form>
+            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
             <p>Forgot your password? Contact Amy, Chewy, or Fabi so they can reset it for you.</p>
         </div>
     </div>
