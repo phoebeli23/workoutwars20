@@ -27,7 +27,7 @@ media query since this is the default in Bootstrap*/
     }
 
     #title {
-        padding-top: 20% !important;
+        padding-top: 10% !important;
     }
 }
 /*
@@ -89,10 +89,13 @@ p, #login-page h1, #add-page h1, #signup h1, #scoreboard h1, #scoreboard h2 {
 
 body {
     background-image: url(/static/images/bg-01.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
 }
 
 #title {
