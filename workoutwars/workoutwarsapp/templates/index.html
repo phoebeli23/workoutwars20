@@ -1,20 +1,15 @@
 <!-- workoutwarsapp/templates/index.html -->
 {% extends "base.html" %} {% block title %}Index{% endblock %} {% block content %}
 <div class="container">
-    <div class="jumbotron">
-        <h1 class="display-3">Welcome to Workout Wars!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        {% if user.is_authenticated %}
-        {% else %}
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="/login" role="button">Let's go!</a>
-        </p>
-        {% endif %}
+<div class="row">
+<div class="col-sm-12">
+    <div id="title" class="align-middle">
+        <div class="purple-text">Welcome to</div>
+        <div class="white-text">WORKOUT WARS</div>
     </div>
-    <p>{{ request.user.profile.nick_name }}</p>
-    <table class="table table-dark table-striped">
+</div>
+</div>
+    <table class="table table-dark">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Exercise</th>

@@ -8,10 +8,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet">
 
-    <!-- Custom JS and CSS -->
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap -->
     {# Load the tag library #}
     {% load bootstrap4 %}
@@ -21,21 +21,21 @@
     {% bootstrap_javascript %}
 
     <script type="text/javascript" src="{% static "js/script.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
 
 <body>
         {% if user.is_authenticated %}
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #563d7c; color: white;">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="/">
-                <img src="{% static "images/crown.svg" %}" width="30" height="30" alt="">
-                 PQ Workout Wars '18</a>
+                <img src="{% static "images/crown-01.svg" %}" width="50" height="50" alt="" style="color: white;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto w-100 justify-content-end bd-navbar-nav flex-row">
+                <ul class="navbar-nav ml-auto w-100 justify-content-end bd-navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Scoreboard</a>
+                        <a class="nav-link" href="/scoreboard">Scoreboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/add">Add Workout</a>
@@ -52,20 +52,16 @@
 
 {% else %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #563d7c; color: white;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="color: white;">
     <a class="navbar-brand" href="/">
-        <img src="{% static "images/crown.svg" %}" width="30" height="30" alt="">
-        PQ Workout Wars '18</a>
+        <img src="{% static "images/crown-01.svg" %}" width="50" height="50" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto w-100 justify-content-end">
-            <li class="nav-ite">
-                <a class="nav-link" href="#">Scoreboard</a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login">Log In</a>
+                <a href="/login" class="btn btn-outline-light" role="button">Log In</a>
             </li>
         </ul>
     </div>
@@ -73,6 +69,9 @@
 
 {% endif %}
     <div id="content">
+        <!-- <div id="bg">
+            <img src="{% static "images/bg-01.jpg" %}" alt="PQ"/>
+        </div> -->
         {% block content %}{% endblock %}
     </div>
 </body>

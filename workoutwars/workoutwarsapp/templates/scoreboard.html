@@ -28,9 +28,11 @@
     }
   </script>
 {% endblock %}
-
 {% block content %}
-  <h1>Scoreboards</h1>
+<div class="container">
+    <div id="scoreboard" class="row justify-content-md-center">
+        <div class="col-sm-12">
+            <h1>Scoreboards</h1>
 
   {% if team_scores %}
     <h2>Points Earned by Team</h2>
@@ -87,7 +89,8 @@
       </tbody>
     </table>
   {% endif %}
-
-  <h3>Feeling inspired?</h3>
-  <p>Go work out, and then <a href="{% url 'add' %}">submit your workout! </a></p>
+  <p>Feeling inspired? Go work out, and then <a href="{% url 'add' %}">submit your workout! </a></p>
+</div>
+</div>
+</div>
 {% endblock %}
