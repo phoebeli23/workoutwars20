@@ -18,11 +18,6 @@ class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
 
-# Can also use the following format (a get request will
-# automatically use this template):
-# class HomePageView(TemplateView):
-#     template_name = "about.html"
-
 def scoreboard(request):
     classes = Class.objects.all()
     class_scores = []
@@ -76,7 +71,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect('/')
+            return redirect('scoreboard')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -89,7 +84,7 @@ def addworkout(request):
             workout = form.save(commit=False)
             workout.user = request.user
             workout.save()
-            return redirect('/')
+            return redirect('scoreboard')
     else:
         form = AddWorkoutForm()
     return render(request, 'add.html', {'form': form})
