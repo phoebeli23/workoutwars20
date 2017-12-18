@@ -15,6 +15,20 @@ media query since this is the default in Bootstrap*/
         font-size: 100px !important;
         letter-spacing: 28px !important;
     }
+
+    #login-page {
+        margin-top: 12% !important;
+        margin-bottom: 20% !important;
+    }
+
+    #add-page {
+        margin-top: 10% !important;
+        margin-bottom: 12% !important;
+    }
+
+    #title {
+        padding-top: 20% !important;
+    }
 }
 /*
 Large devices (desktops, 992px and up)*/
@@ -26,8 +40,8 @@ Large devices (desktops, 992px and up)*/
 .purple-text {
     color: #7e55ff;
     font-family: 'ThirdRail', cursive;
-    font-size: 80px;
-    margin-bottom: -34px;
+    font-size: 60px;
+    margin-bottom: -20px;
     text-align: center;
 }
 
@@ -35,7 +49,7 @@ Large devices (desktops, 992px and up)*/
     font-family: 'Roboto', sans-serif;
     color: #ffffff;
     letter-spacing: 10px;
-    font-size: 70px;
+    font-size: 48px;
     text-align: center;
 }
 
@@ -82,22 +96,9 @@ body {
 }
 
 #title {
-    margin-top: 14%;
-    margin-bottom: 25%;
-}
-
-#login-page {
-    margin-top: 12%;
-    margin-bottom: 20%;
-}
-
-#add-page {
-    margin-top: 10%;
-    margin-bottom: 12%;
-}
-
-#signup {
-    margin-bottom: 12%;
+    height: 100vh;
+    width: 100%;
+    padding-top: 30%;
 }
 
 .btn-primary {
@@ -110,4 +111,26 @@ body {
 
 #content {
     margin-top: 40px;
+}
+
+.jumbotron {
+    background-color: #212529 !important;
+    color: white;
+    margin-bottom: 10%;
+}
+
+.jumbotron p, .jumbotron h3 {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+}
+
+.display-3 {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    font-size: 36px;
+}
+
+#signup {
+    margin-bottom: 20%;
 }
