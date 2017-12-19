@@ -1,10 +1,128 @@
 <!-- workoutwarsapp/templates/index.html -->
-{% extends "base.html" %}
-{% block title %}Index{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Index{% endblock %} {% block content %}
 <div class="container">
-    <h1>Pie Queens 2017-2018 Workout Wars</h1>
-    <p>{{ request.user.profile.nick_name }}</p>
-</div>
-{% endblock %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="title" class="align-middle">
+                <div class="purple-text">Welcome to</div>
+                <div class="white-text">WORKOUT WARS</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="jumbotron">
+
+            <h2 class="display-3">What is Workout Wars?</h2>
+            <br/>
+            <p class="lead">Workout Wars is the annual Pie Queen competition of getting as fit/swole/yoked as possible over winter break. The stronger and fitter you are, the less you're likely to be injured, and the more awesome we will be this spring! It is a competition
+                individually, class vs. class (this includes the coaches!) and as one of two workout wars teams. Grab your teammates, gear up, and get ready to battle.
+            </p>
+            <hr class="my-4">
+
+            <h2 class="display-3">What You Do:</h2>
+            <br/>
+            <p class="lead">1. Workout<br/> 2. Log your workouts & get points<br/> 3. Check the scoreboard to see who is crushing!!
+            </p>
+            <hr class="my-4">
+
+            <h2 class="display-3">Winners!</h2>
+            <br/>
+            <p class="lead">We'll celebrate winning team, winning class, and winning individual! There's a lot of bragging rights to be had and also some seriously swag-arific prizes from our coaches. Friendly heckling/smack talk is a thing.
+            </p>
+            <hr class="my-4">
+
+            <h2 class="display-3">Teams</h2>
+            <br/>
+            <p class="lead">To incentivize cross-class supportiveness, we have Team Can't Stop and Team Never Die. Check the email for teams!
+            </p>
+
+
+
+            <hr class="my-4">
+
+            <h2 class="display-3">Workouts and Points</h2>
+            <br/>
+            <p class="lead">Each workout has a different point value based on intensity and/or skills we want to prioritize for the season. Total points for an entry= Workout point level * multiplier (increment varies depending on workout). Only log time based on how
+                long you actually did the exercise. For example, if you play basketball for an hour but sub out for half of the points, you should only log 30 minutes.
+                <br/><br/> *You get extra points for working out with a teammate from another class.<br/> **Bonus fun fact: you get the most points from throwing and playing friz!
+            </p>
+
+            <table class="table table-dark d-none d-md-block">
+                <thead>
+                    <tr>
+                        <th scope="col">Exercise</th>
+                        <th scope="col">Increment</th>
+                        <th scope="col">Measurement</th>
+                        <th scope="col">Multiplier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">Abs, Plyos for Stretching (dynamic warmup), Static Stretching/Foam Rolling</td>
+                        <td>15</td>
+                        <td>mins</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Push-Ups</td>
+                        <td>30</td>
+                        <td>reps</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Hiking, Plyometrics (squats, lunges, etc.), Downhill Skiing/Snowboarding, Badminton Biking </td>
+                        <td>15</td>
+                        <td>mins</td>
+                        <td>1.25</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Burpees</td>
+                        <td>20</td>
+                        <td>reps</td>
+                        <td>1.25</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Tabatas (Non-Sprinting)</td>
+                        <td>4</td>
+                        <td>mins</td>
+                        <td>1.25</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Cross Country Skiing, Elliptical, Physical Therapy, Pilates, Rollerblading/Ice Skating, Running, Throwing, Yoga, Zumba</td>
+                        <td>15</td>
+                        <td>mins</td>
+                        <td>1.5</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Agility Drills (cones/ladders), Basketball, Climbing/Bouldering, CrossFit, Hill Sprints, Hockey, Jump Roping, Kayaking/Paddling, Kickboxing, Kung Fu/Zen Throwing, Lifting/Weight Training, P90x or Insanity Workout, Rowing, Soccer,
+                            Spin Class, Sprints, Stadiums/Stairs, Swimming, Tennis, Track Workout, Volleyball</td>
+                        <td>15</td>
+                        <td>mins</td>
+                        <td>1.75</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Sprinting/Spinning Tabatas</td>
+                        <td>4</td>
+                        <td>mins</td>
+                        <td>1.75</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Frisbee (beach, goaltie, pick-up), Fun with Friends Drills (2+ people)</td>
+                        <td>15</td>
+                        <td>mins</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr class="my-4">
+
+            <h2 class="display-3">Resources</h2>
+            <br/>
+            <p class="lead"> <a href="https://docs.google.com/document/d/102bHGU_bge1dRa2KhfzSvQ7FVcQjLVy9mf76unWapD4/edit">Here's</a> a doc that Kobe made last year with a bunch of lifting/track/agility workouts merged with our fun with friends drills from practices.
+                Workouts have come from teammates, club teams, and recommendations!
+            </p>
+
+            <h3>Can't wait to see ya'll CRUSHING it and all the selfies that come with it :)</h3>
+        </div>
+    </div>
+    {% endblock %}

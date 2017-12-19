@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
-
+{% load bootstrap4 %}
 {% block content %}
-<div class="">
-    <div id="login-page" class="row">
-            <div class="input-field col s12 center">
-                <img id="crown" src="/static/images/crown.svg" alt class="responsive-img valign profile-image-login"/>
-                <p class="center login-form-test">Pie Queens Workout Wars 2018</p>
-            </div>
-        <div class="col s12 m4 offset-m4 z-depth-4 card-panel center valign">
-  <form class="login-form" method="post">
-      <div class="row margin">
-          {% csrf_token %}
-          {{ form.as_p }}
-      </div>
-    <button class="btn btn-primary purple darken-4" id="login-btn" type="submit">Login</button>
-  </form>
-  <p>Forgot your password? Contact Amy, Chewy, or Fabi so they can reset it for you.</p>
+<div class="container">
+    <div id="login-page" class="row justify-content-md-center">
+        <div class="col-sm-12 col-md-4">
+            <h1>Log In</h1>
+            <form class="form" method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                <button class="btn btn-primary btn-lg btn-block" id="login-btn" type="submit">Login
+                {% endbuttons %}
+            </form>
+            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+            <p>Forgot your password? Contact Amy, Chewy, or Fabi so they can reset it for you.</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

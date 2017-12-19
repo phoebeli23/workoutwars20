@@ -1,56 +1,139 @@
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
+/*Extra small devices (portrait phones, less than 576px)
+media query since this is the default in Bootstrap*/
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {}
+
+/*Medium devices (tablets, 768px and up)*/
+@media screen and (min-width: 768px) {
+    .purple-text {
+        font-size: 120px !important;
+        margin-bottom: -45px !important;
+    }
+
+    .white-text {
+        font-size: 100px !important;
+        letter-spacing: 28px !important;
+    }
+
+    #login-page {
+        margin-top: 12% !important;
+        margin-bottom: 20% !important;
+    }
+
+    #add-page {
+        margin-top: 10% !important;
+        margin-bottom: 12% !important;
+    }
+
+    #title {
+        padding-top: 10% !important;
+    }
+}
+/*
+Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {}
+
+.purple-text {
+    color: #7e55ff;
+    font-family: 'ThirdRail', cursive;
+    font-size: 60px;
+    margin-bottom: -20px;
+    text-align: center;
 }
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: @screen-md-min) {
+.white-text {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    letter-spacing: 10px;
+    font-size: 48px;
+    text-align: center;
 }
 
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: @screen-lg-min) {
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
 }
 
-h1, h2 {
-    color: purple;
+.navbar-dark .navbar-brand {
+    color: #ffffff !important;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
 }
 
-html {
-  background: url(/static/images/bg.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.btn-outline-light:hover {
+    color: black !important;
 }
 
-#content p {
-    color: #662d91;
-    font-size: 24px;
-    font-weight: 500;
+.form {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
 }
 
-input[type=text]:not(.browser-default):focus:not([readonly]),
-input[type=password]:not(.browser-default):focus:not([readonly]) {
-    border-bottom: 1px solid #4a148c;
--webkit-box-shadow: 0 1px 0 0 #4a148c;
-box-shadow: 0 1px 0 0 #4a148c;
+p, #login-page h1, #add-page h1, #signup h1, #scoreboard h1, #scoreboard h2 {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
 }
 
-#id_username, #id_password {
-    color: black;
+@font-face {
+    font-family:"ThirdRail";
+    src: url("Third Rail.ttf") /* TTF file for CSS3 browsers */
 }
 
-#crown {
-    height: 100px;
+body {
+    background-image: url(/static/images/bg-01.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
-#login-btn {
+#title {
+    height: 100vh;
     width: 100%;
-    margin-bottom: 20px;
+    padding-top: 30%;
 }
 
-.login-form {
-    margin: 25px 40px;
+.btn-primary {
+    background-color: #7e55ff !important;
+}
+
+.navbar {
+  background: none;
+}
+
+#content {
+    margin-top: 40px;
+}
+
+.jumbotron {
+    background-color: #212529 !important;
+    color: white;
+    margin-bottom: 10%;
+}
+
+.jumbotron p, .jumbotron h3 {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+}
+
+.display-3 {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    font-size: 36px;
+}
+
+#signup {
+    margin-bottom: 20%;
 }
