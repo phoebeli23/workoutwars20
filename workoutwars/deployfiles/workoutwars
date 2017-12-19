@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name workoutwars.piequeens.org;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/pqadmin/workoutwars18/workoutwars/workoutwarsapp;
+    }
+
+    location / {
+        include         uwsgi_params;
+        uwsgi_pass      unix:/home/pqadmin/workoutwars18/workoutwars/workoutwars.sock;
+    }
+}
