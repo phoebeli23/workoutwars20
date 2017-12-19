@@ -39,7 +39,7 @@ Large devices (desktops, 992px and up)*/
 
 .purple-text {
     color: #7e55ff;
-    font-family: 'ThirdRail', cursive;
+    font-family: 'thirdrail', cursive;
     font-size: 60px;
     margin-bottom: -20px;
     text-align: center;
@@ -83,8 +83,9 @@ p, #login-page h1, #add-page h1, #signup h1, #scoreboard h1, #scoreboard h2 {
 }
 
 @font-face {
-    font-family:"ThirdRail";
-    src: url(/static/css/thirdrail.ttf) /* TTF file for CSS3 browsers */
+    font-family: thirdrail;
+    src: url(/static/fonts/thirdrail.ttf);
+    src: local(/static/fonts/thirdrail.ttf); /* TTF file for CSS3 browsers */
 }
 
 body {
