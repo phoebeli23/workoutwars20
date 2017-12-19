@@ -48,7 +48,7 @@
                             <td>{{ workout.exercise.name }}</td>
                             <td>{{ workout.duration }}</td>
                             <td>{{ workout.exercise.measurement }}</td>
-                            <td>{{ workout.score }}</td>
+                            <td>{{ workout.score|floatformat:2 }}</td>
                           </tr>
                         {% endfor %}
                       </tbody>
