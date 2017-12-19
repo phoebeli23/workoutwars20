@@ -84,7 +84,7 @@ p, #login-page h1, #add-page h1, #signup h1, #scoreboard h1, #scoreboard h2 {
 
 @font-face {
     font-family:"ThirdRail";
-    src: url("Third Rail.ttf") /* TTF file for CSS3 browsers */
+    src: url(/static/css/thirdrail.ttf) /* TTF file for CSS3 browsers */
 }
 
 body {
