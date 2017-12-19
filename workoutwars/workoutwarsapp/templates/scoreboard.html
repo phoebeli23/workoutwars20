@@ -17,8 +17,8 @@
       // Set chart options
       var options = {
         width: "80%",
-        colors: ['purple'],
-        bar: {groupWidth: "95%"},
+        colors: ['#7e55ff'],
+        bar: {groupWidth: "80%"},
         legend: {position: "none" },
         };
 
@@ -29,18 +29,17 @@
   </script>
 {% endblock %}
 {% block content %}
-<div class="container">
     <div id="scoreboard" class="row justify-content-md-center">
-        <div class="col-sm-12">
+        <div class="jumbotron">
+            <div class="container">
             <h1>Scoreboards</h1>
 
   {% if team_scores %}
-    <h2>Points Earned by Team</h2>
+    <h3>Points Earned by Team</h3>
     <table
-      class="table"
-      style="max-width:700px; table-layout : fixed;"
+      class="table table-dark"
       >
-      <thead style="font-size:larger">
+      <thead>
         <tr>
           <th>Team</th>
           <th>Score</th>
@@ -58,14 +57,13 @@
   {% endif %}
 
   {% if class_scores %}
-    <h2>Points Earned by Year</h2>
+    <h3>Points Earned by Year</h3>
     <p>Score by class per person</p>
-    <div id="chart_div" style="max-width:700px;"></div>
+    <div id="chart_div"></div>
     <table
-      class="table"
-      style="max-width:700px; table-layout : fixed;"
+      class="table table-dark"
       >
-      <thead style="font-size:larger">
+      <thead>
         <tr>
           <th></th>
           {% for class_name, class_score, class_normalized in class_scores %}

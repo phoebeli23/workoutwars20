@@ -137,3 +137,9 @@ body {
 #signup {
     margin-bottom: 20%;
 }
+.navbar-dark .navbar-text {
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    font-size: 24px;
+}

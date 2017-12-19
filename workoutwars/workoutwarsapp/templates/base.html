@@ -29,6 +29,9 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="/">
                 <img src="{% static "images/crown-01.svg" %}" width="50" height="50" alt="" style="color: white;"></a>
+                <span class="navbar-text">
+                    {{ request.user.profile.nick_name }}
+                </span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,9 +47,6 @@
                         <a href="/logout" class="btn btn-outline-light" role="button">Log Out</a>
                     </li>
                 </ul>
-                <span class="navbar-text">
-                    {{ request.user.profile.nick_name }}
-                </span>
             </div>
         </nav>
 
@@ -69,9 +69,6 @@
 
 {% endif %}
     <div id="content">
-        <!-- <div id="bg">
-            <img src="{% static "images/bg-01.jpg" %}" alt="PQ"/>
-        </div> -->
         {% block content %}{% endblock %}
     </div>
 </body>
