@@ -55,6 +55,7 @@ class Class(models.Model):
         return '{}'.format(self.name)
 
 class Exercise(models.Model):
+    name = models.CharField(max_length=60)
     description = models.CharField(max_length=60)
     notes = models.CharField(max_length=60, blank=True)
     measurement = models.CharField(max_length=60, default="mins")

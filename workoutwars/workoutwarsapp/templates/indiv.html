@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Individual{% endblock %}
+
+{% block content %}
+    <div id="scoreboard" class="row justify-content-md-center">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>{{ request.user.profile.nick_name }}</h1>
+
+                <p> These are your own workout statistics and logs.
+                  Want to see how your team is doing? Check out the
+                  <a href="{% url 'scoreboard' %}">scoreboard</a>!
+                </p>
+
+                {% if workouts %}
+                    <h3>Individual Statistics</h3>
+                    <table class="table table-dark">
+                      <tbody>
+                        <tr>
+                          <th>Total Workouts</th>
+                          <td>{{ num_workouts }}</td>
+                        </tr>
+                        <tr>
+                          <th>Total Points</th>
+                          <td>{{ total_points }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    {# {% autopaginate workouts %} #}
+                    <h3>Recent Workouts Completed</h3>
+                    <table
+                      id="workout-table"
+                      class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Exercise</th>
+                          <th>Duration</th>
+                          <th>Measurement</th>
+                          <th>Score</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for workout in workouts %}
+                          <tr>
+                            <td>{{ workout.workout_date }}</td>
+                            <td>{{ workout.exercise.name }}</td>
+                            <td>{{ workout.duration }}</td>
+                            <td>{{ workout.exercise.measurement }}</td>
+                            <td>{{ workout.score }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+
+
+                    </table>
+
+                    {#  {% paginate %} #}
+                {% endif %}
+                <p> See a problem? Ability to edit/delete workouts is
+                  coming soon! For now, please let Chewy or Fabi know,
+                  and they will fix it for you.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

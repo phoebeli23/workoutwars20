@@ -55,6 +55,28 @@ def scoreboard(request):
         }
     )
 
+@login_required
+def indiv(request):
+    workouts = Workout.objects.filter(user=request.user)
+    try:
+        workouts = Workout.objects.filter(user=request.user).order_by('workout_date')
+        scores = [w.score for w in workouts]
+    except ObjectDoesNotExist:
+        user_workouts = []
+        scores = []
+    num_workouts = len(workouts)
+    total_points = round(sum(scores))
+
+    return render(request,
+        'indiv.html',
+        {
+            'workouts': workouts,
+            'num_workouts': num_workouts,
+            'total_points': total_points
+        }
+    )
+
+
 # Form views
 def signup(request):
     if request.method == 'POST':

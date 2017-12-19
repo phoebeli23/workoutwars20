@@ -15,4 +15,5 @@ urlpatterns = [
     # workout pages
     url(r'^add/$', views.addworkout, name='add',),
     url(r'^scoreboard/$', views.scoreboard, name='scoreboard',),
+    url(r'indiv/$', views.indiv, name='indiv'),
 ]
