@@ -12,7 +12,7 @@ class SignUpForm(UserCreationForm):
         label='Last Name')
     nick_name = forms.CharField(max_length=30, required=False,
         label='Nick Name',
-        help_text='(if you have one)'
+        help_text='(or what you go by if you don&#39;t have one)'
         )
     email = forms.EmailField(max_length=254, required=True)
     team = forms.ModelChoiceField(

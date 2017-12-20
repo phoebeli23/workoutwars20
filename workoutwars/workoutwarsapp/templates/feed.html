@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block title %}Feed{% endblock %} {% block content %}
+
+<div id="feed" class="row justify-content-md-center">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col">
+                {% if workouts %}
+                    {# {% autopaginate workouts %} #}
+                    <h1>News Feed</h1>
+                    <p>See all the hard work your teammates have put in!</p>
+                    <table
+                      id="workout-table"
+                      class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th>Pie Queen</th>
+                          <th>Workout Date</th>
+                          <th>Exercise</th>
+                          <th>Score</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for workout in workouts %}
+                          <tr>
+                            <td>{{ workout.user.profile.nick_name }}</td>
+                            <td>{{ workout.workout_date}}</td>
+                            <td>{{ workout.exercise.name}}</td>
+                            <td>{{ workout.score }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+
+
+                    </table>
+                    {#  {% paginate %} #}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
