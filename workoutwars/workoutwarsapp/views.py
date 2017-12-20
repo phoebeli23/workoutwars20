@@ -59,7 +59,7 @@ def scoreboard(request):
 def indiv(request):
     workouts = Workout.objects.filter(user=request.user)
     try:
-        workouts = Workout.objects.filter(user=request.user).order_by('workout_date')
+        workouts = Workout.objects.filter(user=request.user).order_by('-workout_date')
         scores = [w.score for w in workouts]
     except ObjectDoesNotExist:
         user_workouts = []
@@ -73,6 +73,21 @@ def indiv(request):
             'workouts': workouts,
             'num_workouts': num_workouts,
             'total_points': total_points
+        }
+    )
+
+@login_required
+def feed(request):
+    workouts = Workout.objects.all().order_by('-workout_date')
+    try:
+        workouts = Workout.objects.all().order_by('-workout_date')
+    except ObjectDoesNotExist:
+        workouts = []
+
+    return render(request,
+        'feed.html',
+        {
+            'workouts': workouts,
         }
     )
 
