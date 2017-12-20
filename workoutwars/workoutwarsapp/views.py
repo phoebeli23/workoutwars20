@@ -46,12 +46,18 @@ def scoreboard(request):
             t_normalized = t_score / t_count
         team_scores.append([t.name, round(t_score), round(t_normalized)])
 
+    try:
+        recent_workouts = Workout.objects.all().order_by('workout_date')
+    except ObjectDoesNotExist:
+        recent_workouts = []
+
     return render(request,
         'scoreboard.html',
         {
             'class_scores': class_scores,
             'class_chart_data': class_chart_data,
-            'team_scores': team_scores
+            'team_scores': team_scores,
+            'recent_workouts': recent_workouts
         }
     )
 
