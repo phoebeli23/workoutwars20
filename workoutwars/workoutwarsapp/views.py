@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
-from django.utils import timezone
 from django.views.generic import TemplateView
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
@@ -24,6 +23,7 @@ def scoreboard(request):
     class_chart_data = []
     teams = Team.objects.all()
     team_scores = []
+    team_chart_data = []
 
     for c in classes:
         c_workouts = Workout.objects.filter(user__profile__class_name=c)
@@ -45,6 +45,7 @@ def scoreboard(request):
         else:
             t_normalized = t_score / t_count
         team_scores.append([t.name, round(t_score), round(t_normalized)])
+        team_chart_data.append([str(t.name), round(t_normalized)])
 
     try:
         recent_workouts = Workout.objects.all().order_by('workout_date')
@@ -57,7 +58,7 @@ def scoreboard(request):
             'class_scores': class_scores,
             'class_chart_data': class_chart_data,
             'team_scores': team_scores,
-            'recent_workouts': recent_workouts
+            'team_chart_data': team_chart_data,
         }
     )
 

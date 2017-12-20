@@ -75,7 +75,7 @@ class Exercise(models.Model):
         return '{}'.format(self.description)
 
 class Workout(models.Model):
-    workout_date = models.DateField(default = timezone.now)
+    workout_date = models.DateField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE, null=True)
     duration = models.DecimalField(max_digits = 5, decimal_places = 2,default = 15)
