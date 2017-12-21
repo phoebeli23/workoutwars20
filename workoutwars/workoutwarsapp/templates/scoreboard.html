@@ -61,8 +61,11 @@
 
               {% if team_scores %}
                 <h3>Points Earned by Team</h3>
+
                 <p>Score by team per person</p>
                 <div id="team_chart_div"></div>
+              <div class="table-responsive">
+
                 <table
                   class="table table-dark"
                   >
@@ -89,6 +92,7 @@
                       </tr>
                   </tbody>
                 </table>
+            </div>
               {% endif %}
 
               {% if class_scores %}
