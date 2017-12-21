@@ -40,7 +40,7 @@ class AddWorkoutForm(forms.ModelForm):
         help_text="When did you do the workout?"
         )
     exercise = forms.ModelChoiceField(
-        queryset=Exercise.objects.all(),
+        queryset=Exercise.objects.all().order_by('name'),
         required=True
         )
     duration = forms.DecimalField(
