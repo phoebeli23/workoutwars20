@@ -14,6 +14,7 @@
 
                 {% if workouts %}
                     <h3>Individual Statistics</h3>
+                    <div class="table-responsive">
                     <table class="table table-dark">
                       <tbody>
                         <tr>
@@ -27,7 +28,6 @@
                       </tbody>
                     </table>
 
-                    {# {% autopaginate workouts %} #}
                     <h3>Recent Workouts Completed</h3>
                     <table
                       id="workout-table"
@@ -55,8 +55,28 @@
 
 
                     </table>
-
-                    {#  {% paginate %} #}
+                </div>
+                    {% if workouts.has_other_pages %}
+              <ul class="pagination pagination-dark justify-content-md-center">
+                {% if workouts.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ workouts.previous_page_number }}">Previous</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                {% endif %}
+                {% for i in workouts.paginator.page_range %}
+                  {% if workouts.number == i %}
+                    <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if workouts.has_next %}
+                  <li class="page-item"><a class="page-link"  href="?page={{ workouts.next_page_number }}">Next</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Next</span></li>
+                {% endif %}
+              </ul>
+            {% endif %}
                 {% endif %}
                 <p> See a problem? Ability to edit/delete workouts is
                   coming soon! For now, please let Chewy or Fabi know,

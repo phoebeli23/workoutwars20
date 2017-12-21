@@ -7,8 +7,8 @@ media query since this is the default in Bootstrap*/
 /*Medium devices (tablets, 768px and up)*/
 @media screen and (min-width: 768px) {
     .purple-text {
-        font-size: 120px !important;
-        margin-bottom: -45px !important;
+        font-size: 110px !important;
+        margin-bottom: -40px !important;
     }
 
     .white-text {
@@ -148,4 +148,8 @@ body {
 
 .bootstrap4-multi-input {
     margin: 0;
+}
+
+a {
+    color: #7e55ff !important;
 }

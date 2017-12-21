@@ -24,7 +24,7 @@ SECRET_KEY = 'eqko$3-zajwbz+ze80zmnubce@2zz%sz@kn0y73nzd6#j@a4=j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['workoutwars.piequeens.org', '45.79.88.252']
+ALLOWED_HOSTS = ['workoutwars.piequeens.org', '45.79.88.252', '127.0.0.1']
 
 
 # Application definition

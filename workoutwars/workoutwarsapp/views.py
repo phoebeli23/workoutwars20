@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from django.utils import timezone
 from django.views.generic import TemplateView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
 from workoutwarsapp.models import Profile, Class, Team, Exercise, Workout
@@ -71,7 +72,17 @@ def indiv(request):
         user_workouts = []
         scores = []
     num_workouts = len(workouts)
-    total_points = round(sum(scores))
+    total_points = round(sum(scores), 2)
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(workouts, 5)
+    try:
+        workouts = paginator.page(page)
+    except PageNotAnInteger:
+        workouts = paginator.page(1)
+    except EmptyPage:
+        workouts = paginator.page(paginator.num_pages)
 
     return render(request,
         'indiv.html',
@@ -85,15 +96,56 @@ def indiv(request):
 @login_required
 def feed(request):
     workouts = Workout.objects.all().order_by('-workout_date')
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(workouts, 10)
     try:
-        workouts = Workout.objects.all().order_by('-workout_date')
-    except ObjectDoesNotExist:
-        workouts = []
+        workouts = paginator.page(page)
+    except PageNotAnInteger:
+        workouts = paginator.page(1)
+    except EmptyPage:
+        workouts = paginator.page(paginator.num_pages)
 
     return render(request,
         'feed.html',
         {
             'workouts': workouts,
+        }
+    )
+
+@login_required
+def rankings(request):
+    profiles = Profile.objects.all();
+    total_scores = []
+
+    for p in profiles:
+        try:
+            workouts = Workout.objects.filter(user=p.user);
+            scores = [w.score for w in workouts]
+        except ObjectDoesNotExist:
+            workouts = []
+            scores = []
+        total_score = round(sum(scores), 2)
+        total_scores.append(total_score)
+
+    zipped = zip(profiles, total_scores)
+    rankings = sorted(zipped, key=lambda x: x[1], reverse=True)
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(rankings, 10)
+    try:
+        rankings = paginator.page(page)
+    except PageNotAnInteger:
+        rankings = paginator.page(1)
+    except EmptyPage:
+        rankings = paginator.page(paginator.num_pages)
+
+
+    return render(request,
+        'rankings.html',
+        {
+            'rankings': rankings
         }
     )
 
