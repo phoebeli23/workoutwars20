@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, required=True)
     team = forms.ModelChoiceField(
         queryset=Team.objects.all(),
-        required=True,
+        required=False,
         help_text='Check PQ Captains\' email for your assigned team'
         )
     class_name = forms.ModelChoiceField(
