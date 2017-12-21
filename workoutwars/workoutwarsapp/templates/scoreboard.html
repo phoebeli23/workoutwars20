@@ -2,12 +2,35 @@
 
 {% block extra_head %}
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript"> //Chart for teams
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChartTeams);
+
+    function drawChartTeams() {
+      // Create the data table.
+      var team_data = new google.visualization.DataTable();
+      team_data.addColumn('string', 'Team');
+      team_data.addColumn('number', 'Score');
+      team_data.addRows({{team_chart_data|safe}});
+
+      // Set chart options
+      var team_options = {
+        width: "80%",
+        colors: ['#7e55ff'],
+        bar: {groupWidth: "80%"},
+        legend: {position: "none" },
+        };
+
+      // Instantiate and draw our chart, passing in some options.
+      var team_chart = new google.visualization.ColumnChart(document.getElementById('team_chart_div'));
+      team_chart.draw(team_data, team_options);
+    }
+  </script>
+  <script type="text/javascript"> // Chart for classes
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-
       // Create the data table.
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Class');
@@ -23,7 +46,7 @@
         };
 
       // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      var chart = new google.visualization.ColumnChart(document.getElementById('class_chart_div'));
       chart.draw(data, options);
     }
   </script>
@@ -34,10 +57,15 @@
         <div class="jumbotron">
             <div class="container">
               <h1>Scoreboards</h1>
+              <p>See how your team and class are doing!</p>
 
               {% if team_scores %}
                 <h3>Points Earned by Team</h3>
-                <div class="table-responsive">
+
+                <p>Score by team per person</p>
+                <div id="team_chart_div"></div>
+              <div class="table-responsive">
+
                 <table
                   class="table table-dark"
                   >
@@ -70,7 +98,7 @@
               {% if class_scores %}
                 <h3>Points Earned by Year</h3>
                 <p>Score by class per person</p>
-                <div id="chart_div"></div>
+                <div id="class_chart_div"></div>
                 <table
                   class="table table-dark"
                   >
@@ -98,7 +126,15 @@
                   </tbody>
                 </table>
               {% endif %}
-              <p>Feeling inspired? Go work out, and then <a href="{% url 'add' %}">submit your workout</a>!</p>
+
+              <h4>Feeling inspired?</h4>
+              <p>Go work out, and then <a href="{% url 'add' %}">submit your workout</a>!</p>
+
+              <h4>See your progress</h4>
+              <p>Check out your <a href="{% url 'indiv' %}">individual page</a> to see what you've accomplished.</p>
+
+              <h4>See recent workouts</h4>
+              <p>Look at <a href="{% url 'feed' %}">all the hard work</a> your teammates have put in!</p>
           </div>
         </div>
       </div>

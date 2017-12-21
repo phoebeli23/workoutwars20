@@ -76,7 +76,7 @@ class Exercise(models.Model):
 
 class Workout(models.Model):
     workout_date = models.DateField(default = timezone.now)
-    user = models.ForeignKey(User, related_name='workouts', on_delete=models.CASCADE, )
+    user = models.ForeignKey(User, related_name='workouts', on_delete=models.CASCADE)
     exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE, null=True)
     duration = models.DecimalField(max_digits = 5, decimal_places = 2,default = 15)
     with_other_class = models.BooleanField(default=False)
