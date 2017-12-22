@@ -12,12 +12,12 @@ class SignUpForm(UserCreationForm):
         label='Last Name')
     nick_name = forms.CharField(max_length=30, required=False,
         label='Nick Name',
-        help_text='(if you have one)'
+        help_text='(or what you go by if you don&#39;t have one)'
         )
     email = forms.EmailField(max_length=254, required=True)
     team = forms.ModelChoiceField(
         queryset=Team.objects.all(),
-        required=True,
+        required=False,
         help_text='Check PQ Captains\' email for your assigned team'
         )
     class_name = forms.ModelChoiceField(
@@ -34,17 +34,17 @@ class AddWorkoutForm(forms.ModelForm):
     workout_date = forms.DateField(
         initial=timezone.now,
         widget=forms.SelectDateWidget(years=(2017, 2018),
-            months={1:('December'), 12:('January')}),
+            months={12:('December'), 1:('January')}),
         label="Workout Date",
         required=True,
         help_text="When did you do the workout?"
         )
     exercise = forms.ModelChoiceField(
-        queryset=Exercise.objects.all(),
+        queryset=Exercise.objects.all().order_by('name'),
         required=True
         )
     duration = forms.DecimalField(
-        min_value=0, max_digits=4, decimal_places=2,
+        min_value=0, max_digits=5, decimal_places=2,
         required=True,
         label="Duration (in mins)",
         help_text="unless pushups or burpees, then enter quantity")
@@ -52,4 +52,4 @@ class AddWorkoutForm(forms.ModelForm):
 
     class Meta:
         model = Workout
-        fields = ('exercise', 'duration', 'with_other_class', )
+        fields = ('workout_date', 'exercise', 'duration', 'with_other_class', )

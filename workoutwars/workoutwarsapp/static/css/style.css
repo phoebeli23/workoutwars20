@@ -7,12 +7,12 @@ media query since this is the default in Bootstrap*/
 /*Medium devices (tablets, 768px and up)*/
 @media screen and (min-width: 768px) {
     .purple-text {
-        font-size: 120px !important;
-        margin-bottom: -45px !important;
+        font-size: 110px !important;
+        margin-bottom: -40px !important;
     }
 
     .white-text {
-        font-size: 100px !important;
+        font-size: 90px !important;
         letter-spacing: 28px !important;
     }
 
@@ -39,7 +39,7 @@ Large devices (desktops, 992px and up)*/
 
 .purple-text {
     color: #7e55ff;
-    font-family: 'ThirdRail', cursive;
+    font-family: 'Permanent Marker', cursive;
     font-size: 60px;
     margin-bottom: -20px;
     text-align: center;
@@ -83,8 +83,9 @@ p, #login-page h1, #add-page h1, #signup h1, #scoreboard h1, #scoreboard h2 {
 }
 
 @font-face {
-    font-family:"ThirdRail";
-    src: url(/static/css/thirdrail.ttf) /* TTF file for CSS3 browsers */
+    font-family: thirdrail;
+    src: url(/static/fonts/thirdrail.ttf);
+    src: local(/static/fonts/thirdrail.ttf); /* TTF file for CSS3 browsers */
 }
 
 body {
@@ -143,4 +144,17 @@ body {
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
     font-size: 24px;
+}
+
+.bootstrap4-multi-input {
+    margin: 0;
+}
+
+a {
+    color: #8375ff!important;
+}
+
+.page-item.active .page-link {
+    background-color: #7e55ff !important;
+    border-color: #7e55ff !important;
 }

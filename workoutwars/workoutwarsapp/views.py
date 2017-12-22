@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
-from django.utils import timezone
 from django.views.generic import TemplateView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
 from workoutwarsapp.models import Profile, Class, Team, Exercise, Workout
@@ -24,6 +24,7 @@ def scoreboard(request):
     class_chart_data = []
     teams = Team.objects.all()
     team_scores = []
+    team_chart_data = []
 
     for c in classes:
         c_workouts = Workout.objects.filter(user__profile__class_name=c)
@@ -45,13 +46,20 @@ def scoreboard(request):
         else:
             t_normalized = t_score / t_count
         team_scores.append([t.name, round(t_score), round(t_normalized)])
+        team_chart_data.append([str(t.name), round(t_normalized)])
+
+    try:
+        recent_workouts = Workout.objects.all().order_by('workout_date')
+    except ObjectDoesNotExist:
+        recent_workouts = []
 
     return render(request,
         'scoreboard.html',
         {
             'class_scores': class_scores,
             'class_chart_data': class_chart_data,
-            'team_scores': team_scores
+            'team_scores': team_scores,
+            'team_chart_data': team_chart_data,
         }
     )
 
@@ -59,13 +67,23 @@ def scoreboard(request):
 def indiv(request):
     workouts = Workout.objects.filter(user=request.user)
     try:
-        workouts = Workout.objects.filter(user=request.user).order_by('workout_date')
+        workouts = Workout.objects.filter(user=request.user).order_by('-workout_date')
         scores = [w.score for w in workouts]
     except ObjectDoesNotExist:
         user_workouts = []
         scores = []
     num_workouts = len(workouts)
-    total_points = round(sum(scores))
+    total_points = round(sum(scores), 2)
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(workouts, 5)
+    try:
+        workouts = paginator.page(page)
+    except PageNotAnInteger:
+        workouts = paginator.page(1)
+    except EmptyPage:
+        workouts = paginator.page(paginator.num_pages)
 
     return render(request,
         'indiv.html',
@@ -73,6 +91,69 @@ def indiv(request):
             'workouts': workouts,
             'num_workouts': num_workouts,
             'total_points': total_points
+        }
+    )
+
+@login_required
+def feed(request):
+    workouts = Workout.objects.all().order_by('-workout_date')
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(workouts, 10)
+    try:
+        workouts = paginator.page(page)
+    except PageNotAnInteger:
+        workouts = paginator.page(1)
+    except EmptyPage:
+        workouts = paginator.page(paginator.num_pages)
+
+    index = paginator.page_range.index(workouts.number)
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
+    return render(request,
+        'feed.html',
+        {
+            'workouts': workouts,
+            'page_range': page_range,
+        }
+    )
+
+@login_required
+def rankings(request):
+    profiles = Profile.objects.all();
+    total_scores = []
+
+    for p in profiles:
+        try:
+            workouts = Workout.objects.filter(user=p.user);
+            scores = [w.score for w in workouts]
+        except ObjectDoesNotExist:
+            workouts = []
+            scores = []
+        total_score = round(sum(scores), 2)
+        total_scores.append(total_score)
+
+    zipped = zip(profiles, total_scores)
+    rankings = sorted(zipped, key=lambda x: x[1], reverse=True)
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(rankings, 10)
+    try:
+        rankings = paginator.page(page)
+    except PageNotAnInteger:
+        rankings = paginator.page(1)
+    except EmptyPage:
+        rankings = paginator.page(paginator.num_pages)
+
+
+    return render(request,
+        'rankings.html',
+        {
+            'rankings': rankings
         }
     )
 

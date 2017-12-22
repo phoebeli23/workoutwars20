@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block title %}Feed{% endblock %} {% block content %}
+
+<div id="feed" class="row justify-content-md-center">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col">
+                {% if workouts %}
+                    <h1>News Feed</h1>
+                    <p>See all the hard work your teammates have put in! To see how you stack up against everyone else, check out the <a href="{% url 'rankings' %}">rankings</a>!</p>
+                    <table
+                      id="workout-table"
+                      class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Workout Date</th>
+                          <th>Exercise</th>
+                          <th>Score</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for workout in workouts %}
+                          <tr>
+                            <td>{{ workout.user.profile.nick_name }}</td>
+                            <td>{{ workout.workout_date}}</td>
+                            <td>{{ workout.exercise.name}}</td>
+                            <td>{{ workout.score }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                {% if workouts.has_other_pages %}
+              <ul class="pagination pagination-dark justify-content-md-center">
+                  {% endif %}
+
+                {% if workouts.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ workouts.previous_page_number }}">Previous</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                {% endif %}
+
+                {% for i in page_range %}
+                  {% if workouts.number == i %}
+                    <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+
+                {% if workouts.has_next %}
+                  <li class="page-item"><a class="page-link"  href="?page={{ workouts.next_page_number }}">Next</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Next</span></li>
+                {% endif %}
+
+              </ul>
+                {% else %}
+                  <h1>News Feed</h1>
+
+                  <p>No recent workouts to show. Start logging!</p>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

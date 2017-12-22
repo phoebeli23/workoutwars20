@@ -24,7 +24,7 @@ SECRET_KEY = 'eqko$3-zajwbz+ze80zmnubce@2zz%sz@kn0y73nzd6#j@a4=j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['workoutwars.piequeens.org', '45.79.88.252', '127.0.0.1']
 
 
 # Application definition
@@ -117,8 +117,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, "workoutwarsapp/static")
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
 
 # Authorization settings
