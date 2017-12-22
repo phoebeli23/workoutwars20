@@ -107,10 +107,17 @@ def feed(request):
     except EmptyPage:
         workouts = paginator.page(paginator.num_pages)
 
+    index = paginator.page_range.index(workouts.number)
+    max_index = len(paginator.page_range)
+    start_index = index - 3 if index >= 3 else 0
+    end_index = index + 3 if index <= max_index - 3 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
     return render(request,
         'feed.html',
         {
             'workouts': workouts,
+            'page_range': page_range,
         }
     )
 
