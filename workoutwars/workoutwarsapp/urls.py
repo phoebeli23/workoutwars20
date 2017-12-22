@@ -4,7 +4,7 @@ from workoutwarsapp import views
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
 
-favicon_view = RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)
+favicon_view = RedirectView.as_view(url='/static/images/myfavicon.ico', permanent=True)
 
 urlpatterns = [
     # home page
