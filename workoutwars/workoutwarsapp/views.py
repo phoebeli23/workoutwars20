@@ -109,8 +109,8 @@ def feed(request):
 
     index = paginator.page_range.index(workouts.number)
     max_index = len(paginator.page_range)
-    start_index = index - 3 if index >= 3 else 0
-    end_index = index + 3 if index <= max_index - 3 else max_index
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
     page_range = paginator.page_range[start_index:end_index]
 
     return render(request,
