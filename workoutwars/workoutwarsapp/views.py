@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 # workoutwarsapp/views.py
+from django.http import Http404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -9,9 +10,10 @@ from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+# from django.contrib.auth.models import User
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
-from workoutwarsapp.models import Profile, Class, Team, Exercise, Workout
+from workoutwarsapp.models import User, Profile, Class, Team, Exercise, Workout
 
 # Page views
 class HomePageView(TemplateView):
@@ -64,10 +66,48 @@ def scoreboard(request):
     )
 
 @login_required
-def indiv(request):
-    workouts = Workout.objects.filter(user=request.user)
+def coach(request):
+    profiles = Profile.objects.all();
+    total_scores = []
+    exercise = Exercise.objects.get(name='Flying')
+
+    for p in profiles:
+        try:
+            workouts = Workout.objects.filter(user=p.user, exercise=exercise);
+            scores = [w.score for w in workouts]
+        except ObjectDoesNotExist:
+            workouts = []
+            scores = []
+        total_score = round(sum(scores), 2)
+        total_scores.append(total_score)
+
+    zipped = zip(profiles, total_scores)
+    rankings = sorted(zipped, key=lambda x: x[1], reverse=True)
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(rankings, 10)
     try:
-        workouts = Workout.objects.filter(user=request.user).order_by('-workout_date')
+        rankings = paginator.page(page)
+    except PageNotAnInteger:
+        rankings = paginator.page(1)
+    except EmptyPage:
+        rankings = paginator.page(paginator.num_pages)
+
+    return render(request,
+        'coach.html',
+        {
+            'rankings': rankings
+        }
+    )
+
+@login_required
+def indiv(request, username):
+    user = User.objects.get(username=username)
+
+    workouts = Workout.objects.filter(user=user)
+    try:
+        workouts = Workout.objects.filter(user=user).order_by('-workout_date')
         scores = [w.score for w in workouts]
     except ObjectDoesNotExist:
         user_workouts = []
@@ -85,13 +125,15 @@ def indiv(request):
     except EmptyPage:
         workouts = paginator.page(paginator.num_pages)
 
+
     return render(request,
         'indiv.html',
         {
+            'user': user,
             'workouts': workouts,
             'num_workouts': num_workouts,
             'total_points': total_points
-        }
+        }, {}
     )
 
 @login_required
