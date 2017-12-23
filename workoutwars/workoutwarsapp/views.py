@@ -77,7 +77,7 @@ def indiv(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(workouts, 5)
+    paginator = Paginator(workouts, 8)
     try:
         workouts = paginator.page(page)
     except PageNotAnInteger:
