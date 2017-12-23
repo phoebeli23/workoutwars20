@@ -69,7 +69,7 @@ def scoreboard(request):
 def coach(request):
     profiles = Profile.objects.all();
     total_scores = []
-    exercise = Exercise.objects.get(name='Flying')
+    exercise = Exercise.objects.get(name='Throwing')
 
     for p in profiles:
         try:
