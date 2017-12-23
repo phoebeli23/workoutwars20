@@ -12,7 +12,7 @@
         data.addColumn('date', 'Date');
         data.addColumn('number', 'Score');
         {% for date, score in chart_data %}
-          data.addRow([new Date('{{ date.isoformat }}'), {{ score }}])
+          data.addRow([new Date({{ date.year }}, {{ date.month }} - 1, {{ date.day }}), {{ score }}])
         {% endfor %}
 
         // Set chart options
@@ -20,11 +20,14 @@
           backgroundColor: '212529',
           colors: ['#7e55ff'],
           legend: {position: "none" },
-          hAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: 'transparent' },
+          hAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: 'transparent', format: 'MMM dd' },
           vAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: '808080', baselineColor: 'C0C0C0' },
+          pointSize: 5
           };
 
         // Instantiate and draw our chart, passing in some options.
+        var formatter = new google.visualization.DateFormat({pattern: 'MMM dd'});
+        formatter.format(data, 0);
         var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
         chart.draw(data, options);
       }
