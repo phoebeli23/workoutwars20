@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
+ <link rel="shortcut icon" type="image/png" href="{% static "images/myfavicon.ico"  %}" />
+ 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript"> //Chart for teams
     google.charts.load('current', {'packages':['corechart']});
@@ -15,11 +17,10 @@
 
       // Set chart options
       var team_options = {
-        backgroundColor: '212529',
+        width: "80%",
         colors: ['#7e55ff'],
+        bar: {groupWidth: "80%"},
         legend: {position: "none" },
-        hAxis: { textStyle:{color: 'C0C0C0'} },
-        vAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: '808080', baselineColor: 'C0C0C0' },
         };
 
       // Instantiate and draw our chart, passing in some options.
@@ -40,11 +41,10 @@
 
       // Set chart options
       var options = {
-        backgroundColor: '212529',
+        width: "80%",
         colors: ['#7e55ff'],
+        bar: {groupWidth: "80%"},
         legend: {position: "none" },
-        hAxis: { textStyle:{color: 'C0C0C0'} },
-        vAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: '808080', baselineColor: 'C0C0C0' },
         };
 
       // Instantiate and draw our chart, passing in some options.
