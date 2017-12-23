@@ -5,10 +5,11 @@ from __future__ import unicode_literals
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from django.views.generic import TemplateView
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import datetime
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
 from workoutwarsapp.models import Profile, Class, Team, Exercise, Workout
@@ -65,16 +66,30 @@ def scoreboard(request):
 
 @login_required
 def indiv(request):
+    # Get list of workouts
     workouts = Workout.objects.filter(user=request.user)
     try:
         workouts = Workout.objects.filter(user=request.user).order_by('-workout_date')
         scores = [w.score for w in workouts]
     except ObjectDoesNotExist:
-        user_workouts = []
+        workouts = []
         scores = []
+
+    # Get statistics information
     num_workouts = len(workouts)
     total_points = round(sum(scores), 2)
 
+    # Get line chart data
+    start_date = datetime.date(2017, 12, 18)
+    today = datetime.date.today()
+    diff = (today - start_date).days
+    chart_data = [[start_date + datetime.timedelta(days=x), 0] for x in range(0, diff + 1)]
+    for w in workouts:
+        diff = (w.workout_date - start_date).days
+        if diff > 0 and diff < len(chart_data):
+            chart_data[diff][1] += w.score
+
+    # Pagination
     page = request.GET.get('page', 1)
 
     paginator = Paginator(workouts, 8)
@@ -90,7 +105,8 @@ def indiv(request):
         {
             'workouts': workouts,
             'num_workouts': num_workouts,
-            'total_points': total_points
+            'total_points': total_points,
+            'chart_data': chart_data
         }
     )
 
