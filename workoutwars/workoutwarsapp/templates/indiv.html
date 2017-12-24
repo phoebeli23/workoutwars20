@@ -1,5 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Individual{% endblock %}
+{% block extra_head %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Score');
+        {% for date, score in chart_data %}
+          data.addRow([new Date({{ date.year }}, {{ date.month }} - 1, {{ date.day }}), {{ score }}])
+        {% endfor %}
+
+        // Set chart options
+        var options = {
+          backgroundColor: '212529',
+          colors: ['#7e55ff'],
+          legend: {position: "none" },
+          hAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: 'transparent', format: 'MMM dd' },
+          vAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: '808080', baselineColor: 'C0C0C0' },
+          pointSize: 5
+          };
+
+        // Instantiate and draw our chart, passing in some options.
+        var formatter = new google.visualization.DateFormat({pattern: 'MMM dd'});
+        formatter.format(data, 0);
+        var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+        chart.draw(data, options);
+      }
+    </script>
+{% endblock %}
 
 {% block content %}
     <div id="scoreboard" class="row justify-content-md-center">
@@ -15,7 +48,7 @@
                 {% if workouts %}
                     <h3>Individual Statistics</h3>
                     <div class="table-responsive">
-                    <table class="table table-dark">
+                    <table class="table table-dark" style="max-width:375px;">
                       <tbody>
                         <tr>
                           <th>Total Workouts</th>
@@ -27,6 +60,8 @@
                         </tr>
                       </tbody>
                     </table>
+
+                    <div id="line_chart"></div>
 
                     <h3>Recent Workouts Completed</h3>
                     <p>For a list of what all pie queens have done, check out the <a href="{% url 'feed' %}">newsfeed</a>!</p>
