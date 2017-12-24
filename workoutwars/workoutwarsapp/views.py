@@ -68,20 +68,20 @@ def scoreboard(request):
 @login_required
 def coach(request):
     profiles = Profile.objects.all();
-    total_scores = []
+    total_durations = []
     exercise = Exercise.objects.get(name='Throwing')
 
     for p in profiles:
         try:
             workouts = Workout.objects.filter(user=p.user, exercise=exercise);
-            scores = [w.score for w in workouts]
+            durations = [w.duration for w in workouts]
         except ObjectDoesNotExist:
             workouts = []
-            scores = []
-        total_score = round(sum(scores), 2)
-        total_scores.append(total_score)
+            durations = []
+        total_duration = round(sum(durations), 2)
+        total_durations.append(total_duration)
 
-    zipped = zip(profiles, total_scores)
+    zipped = zip(profiles, total_durations)
     rankings = sorted(zipped, key=lambda x: x[1], reverse=True)
 
     page = request.GET.get('page', 1)
@@ -97,7 +97,7 @@ def coach(request):
     return render(request,
         'coach.html',
         {
-            'rankings': rankings
+            'rankings': rankings,
         }
     )
 
