@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block title %}Index{% endblock %} {% block content %}
+<div id="feed" class="row justify-content-md-center">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col">
+                {% if rankings %}
+                <h1 class="display-3">Hi Coaches!</h1>
+                <br/>
+                <p class="lead"> Welcome to your super secret, totally rad coach access page. Below are the throwing rankings and if you click on the names, it'll take you to that player's individual page. Enjoy!
+                </p>
+                <hr class="my-4">
+                <h1>Throwing Rankings</h1>
+                    <p>Who tossed the friz the most?</p>
+                    <div class="table-responsive">
+                    <table
+                      id="workout-table"
+                      class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Team</th>
+                          <th scope="col">Class</th>
+                          <th scope="col">Duration</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for profile, total_duration in rankings %}
+                          <tr>
+                            <td><a href="{% url 'indiv' username=profile.user.get_username %}">{{ profile.nick_name }}</a></td>
+                            <td>{{ profile.team }}</td>
+                            <td>{{ profile.class_name }}</td>
+                            <td>{{ total_duration }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+
+
+                    </table>
+                </div>
+                    {% if rankings.has_other_pages %}
+              <ul class="pagination pagination-dark justify-content-md-center">
+                {% if rankings.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ rankings.previous_page_number }}">Previous</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                {% endif %}
+                {% for i in rankings.paginator.page_range %}
+                  {% if rankings.number == i %}
+                    <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if rankings.has_next %}
+                  <li class="page-item"><a class="page-link"  href="?page={{ rankings.next_page_number }}">Next</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Next</span></li>
+                {% endif %}
+              </ul>
+            {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

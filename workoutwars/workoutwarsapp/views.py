@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 # workoutwarsapp/views.py
+from django.http import Http404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -12,13 +13,14 @@ from django.views.generic import TemplateView
 import datetime
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
-from workoutwarsapp.models import Profile, Class, Team, Exercise, Workout
+from workoutwarsapp.models import User, Profile, Class, Team, Exercise, Workout
 
 # Page views
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
 
+@login_required
 def scoreboard(request):
     classes = Class.objects.all()
     class_scores = []
@@ -35,8 +37,8 @@ def scoreboard(request):
             c_normalized = 0
         else:
             c_normalized = c_score / c_count
-        class_scores.append([c.plural, round(c_score), round(c_normalized)])
-        class_chart_data.append([str(c.plural), round(c_normalized)])
+        class_scores.append([c.plural, round(c_score, 2), round(c_normalized, 2)])
+        class_chart_data.append([str(c.plural), round(c_normalized, 2)])
 
     for t in teams:
         t_workouts = Workout.objects.filter(user__profile__team=t)
@@ -46,8 +48,8 @@ def scoreboard(request):
             t_normalized = 0
         else:
             t_normalized = t_score / t_count
-        team_scores.append([t.name, round(t_score), round(t_normalized)])
-        team_chart_data.append([str(t.name), round(t_normalized)])
+        team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2)])
+        team_chart_data.append([str(t.name), round(t_normalized, 2)])
 
     try:
         recent_workouts = Workout.objects.all().order_by('workout_date')
@@ -65,11 +67,49 @@ def scoreboard(request):
     )
 
 @login_required
-def indiv(request):
-    # Get list of workouts
-    workouts = Workout.objects.filter(user=request.user)
+def coach(request):
+    profiles = Profile.objects.all();
+    total_durations = []
+    exercise = Exercise.objects.get(name='Throwing')
+
+    for p in profiles:
+        try:
+            workouts = Workout.objects.filter(user=p.user, exercise=exercise);
+            durations = [w.duration for w in workouts]
+        except ObjectDoesNotExist:
+            workouts = []
+            durations = []
+        total_duration = round(sum(durations), 2)
+        total_durations.append(total_duration)
+
+    zipped = zip(profiles, total_durations)
+    rankings = sorted(zipped, key=lambda x: x[1], reverse=True)
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(rankings, 10)
     try:
-        workouts = Workout.objects.filter(user=request.user).order_by('-workout_date')
+        rankings = paginator.page(page)
+    except PageNotAnInteger:
+        rankings = paginator.page(1)
+    except EmptyPage:
+        rankings = paginator.page(paginator.num_pages)
+
+    return render(request,
+        'coach.html',
+        {
+            'rankings': rankings,
+        }
+    )
+
+@login_required
+def indiv(request, username):
+  
+    # Get user and respective workouts
+    user = User.objects.get(username=username)
+    workouts = Workout.objects.filter(user=user)
+    try:
+        workouts = Workout.objects.filter(user=user).order_by('-workout_date')
         scores = [w.score for w in workouts]
     except ObjectDoesNotExist:
         workouts = []
@@ -103,11 +143,12 @@ def indiv(request):
     return render(request,
         'indiv.html',
         {
+            'user': user,
             'workouts': workouts,
             'num_workouts': num_workouts,
             'total_points': total_points,
             'chart_data': chart_data
-        }
+        }, {}
     )
 
 @login_required

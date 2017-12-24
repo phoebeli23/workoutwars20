@@ -38,8 +38,8 @@
     <div id="scoreboard" class="row justify-content-md-center">
         <div class="jumbotron">
             <div class="container">
-                <h1>{{ request.user.profile.nick_name }}</h1>
-                <h3>{{ request.user.profile.team }}, {{ request.user.profile.class_name }}</h3>
+                <h1>{{ user.profile.nick_name }}</h1>
+                <h3>{{ user.profile.team }}, {{ user.profile.class_name }}</h3>
                 <p> These are your own workout statistics and logs.
                   Want to see how your team is doing? Check out the
                   <a href="{% url 'scoreboard' %}">scoreboard</a>!

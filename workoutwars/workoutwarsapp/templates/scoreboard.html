@@ -17,10 +17,11 @@
 
       // Set chart options
       var team_options = {
-        width: "80%",
+        backgroundColor: '212529',
         colors: ['#7e55ff'],
-        bar: {groupWidth: "80%"},
         legend: {position: "none" },
+        hAxis: { textStyle:{color: 'C0C0C0'} },
+        vAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: '808080', baselineColor: 'C0C0C0' },
         };
 
       // Instantiate and draw our chart, passing in some options.
@@ -41,10 +42,11 @@
 
       // Set chart options
       var options = {
-        width: "80%",
+        backgroundColor: '212529',
         colors: ['#7e55ff'],
-        bar: {groupWidth: "80%"},
         legend: {position: "none" },
+        hAxis: { textStyle:{color: 'C0C0C0'} },
+        vAxis: { textStyle:{color: 'C0C0C0'}, gridlineColor: '808080', baselineColor: 'C0C0C0' },
         };
 
       // Instantiate and draw our chart, passing in some options.
@@ -133,7 +135,7 @@
               <p>Go work out, and then <a href="{% url 'add' %}">submit your workout</a>!</p>
 
               <h4>See your progress</h4>
-              <p>Check out your <a href="{% url 'indiv' %}">individual page</a> to see what you've accomplished.</p>
+              <p>Check out your <a href="{% url 'indiv' username=request.user.get_username %}">individual page</a> to see what you've accomplished.</p>
 
               <h4>See recent workouts</h4>
               <p>Look at <a href="{% url 'feed' %}">all the hard work</a> your teammates have put in!</p>
