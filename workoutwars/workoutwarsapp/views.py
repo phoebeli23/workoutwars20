@@ -38,7 +38,7 @@ def scoreboard(request):
         else:
             c_normalized = c_score / c_count
         class_scores.append([c.plural, round(c_score, 2), round(c_normalized, 2)])
-        class_chart_data.append([str(c.plural), round(c_normalized, 2)])
+        class_chart_data.append([str(c.plural), float(round(c_normalized, 2))])
 
     for t in teams:
         t_workouts = Workout.objects.filter(user__profile__team=t)
@@ -49,7 +49,7 @@ def scoreboard(request):
         else:
             t_normalized = t_score / t_count
         team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2)])
-        team_chart_data.append([str(t.name), round(t_normalized, 2)])
+        team_chart_data.append([str(t.name), float(round(t_normalized, 2))])
 
     try:
         recent_workouts = Workout.objects.all().order_by('workout_date')
@@ -104,7 +104,7 @@ def coach(request):
 
 @login_required
 def indiv(request, username):
-  
+
     # Get user and respective workouts
     user = User.objects.get(username=username)
     workouts = Workout.objects.filter(user=user)
