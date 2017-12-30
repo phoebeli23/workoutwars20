@@ -104,7 +104,7 @@ def coach(request):
 
 @login_required
 def indiv(request, username):
-  
+
     # Get user and respective workouts
     user = User.objects.get(username=username)
     workouts = Workout.objects.filter(user=user)
@@ -154,6 +154,44 @@ def indiv(request, username):
 @login_required
 def feed(request):
     workouts = Workout.objects.all().order_by('-workout_date')
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(workouts, 10)
+    try:
+        workouts = paginator.page(page)
+    except PageNotAnInteger:
+        workouts = paginator.page(1)
+    except EmptyPage:
+        workouts = paginator.page(paginator.num_pages)
+
+    index = paginator.page_range.index(workouts.number)
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
+    return render(request,
+        'feed.html',
+        {
+            'workouts': workouts,
+            'page_range': page_range,
+        }
+    )
+
+@login_required
+def feedscore(request):
+    workouts = Workout.objects.all()
+
+    try:
+        scores = [w.score for w in workouts]
+    except ObjectDoesNotExist:
+        scores = []
+
+    zipped = zip(workouts, scores)
+    rankings = sorted(zipped, key=lambda x: x[1], reverse=True)
+
+    workouts = list(zip(*rankings))[0]
+
     page = request.GET.get('page', 1)
 
     paginator = Paginator(workouts, 10)
