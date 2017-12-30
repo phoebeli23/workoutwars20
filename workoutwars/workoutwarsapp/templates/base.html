@@ -55,7 +55,7 @@
                         <a class="nav-link" href="/rankings">Rankings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/feed">News Feed</a>
+                        <a class="nav-link" href="{% url 'feed'%}">News Feed</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'indiv' username=request.user.get_username %}">Individual</a>
@@ -86,7 +86,7 @@
                         <a class="nav-link" href="/rankings">Rankings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/feed">News Feed</a>
+                        <a class="nav-link" href="{% url 'feed' %}">News Feed</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'indiv' username=request.user.get_username %}">Individual</a>

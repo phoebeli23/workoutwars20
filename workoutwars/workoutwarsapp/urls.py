@@ -18,9 +18,11 @@ urlpatterns = [
     # workout pages
     url(r'^add/$', views.addworkout, name='add',),
     url(r'^scoreboard/$', views.scoreboard, name='scoreboard',),
-    # url(r'indiv/$', views.indiv, name='indiv'),
     url(r'^indiv/(?P<username>[\w.\-]+)/', views.indiv, name='indiv',),
-    url(r'^feed/$', views.feed, name='feed',),
+
+    url(r'^feed/', views.feed, name='feed',),
+    url(r'^feedscore/', views.feedscore, name='feed',),
+
     url(r'^rankings/$', views.rankings, name='rankings',),
     url(r'^coach/$', views.coach, name='coach',),
 
