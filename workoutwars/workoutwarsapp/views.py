@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 # workoutwarsapp/views.py
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -10,6 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView
 import datetime
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
@@ -104,7 +106,7 @@ def coach(request):
 
 @login_required
 def indiv(request, username):
-  
+
     # Get user and respective workouts
     user = User.objects.get(username=username)
     workouts = Workout.objects.filter(user=user)
@@ -248,3 +250,34 @@ def addworkout(request):
     else:
         form = AddWorkoutForm()
     return render(request, 'add.html', {'form': form})
+
+# @login_required
+# def editworkout(request, pk):
+#     instance = Workout.objects.get(id=pk)
+#     form = AddWorkoutForm(request.POST or None, instance=instance)
+#     if request.method == 'POST':
+#         if form.is_valid():
+#             instance = form.save(commit=False)
+#             instance.user = request.user
+#             instance.save()
+#             return redirect('scoreboard')
+#     else:
+#         form = AddWorkoutForm()
+#     return render(request, 'editworkout.html', {'form': form, 'exercise': instance.exercise})
+
+@login_required
+class editworkout(UpdateView):
+    form_class = AddWorkoutForm
+    model = Workout
+    template_name = 'editworkout.html'
+
+    def get(self, request, **kwargs):
+        self.object = Workout.objects.get(id=self.kwargs['pk'])
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        context = self.get_context_data(object=self.object, form=form)
+        return self.render_to_response(context)
+
+    def get_object(self, queryset=None):
+        obj = Workout.objects.get(id=self.kwargs['pk'])
+        return obj

@@ -75,6 +75,7 @@
                           <th>Exercise</th>
                           <th colspan="2">Duration</th>
                           <th>Score</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -85,6 +86,7 @@
                             <td>{{ workout.duration|floatformat:0 }}</td>
                             <td>{{ workout.exercise.measurement }}</td>
                             <td>{{ workout.score|floatformat:2 }}</td>
+                            <td><a href="{% url 'editworkout' pk=workout.id %}">Edit</td>
                           </tr>
                         {% endfor %}
                       </tbody>
