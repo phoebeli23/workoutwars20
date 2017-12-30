@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^indiv/(?P<username>[\w.\-]+)/', views.indiv, name='indiv',),
 
     url(r'^feed/', views.feed, name='feed',),
-    url(r'^feedscore/', views.feedscore, name='feed',),
+    url(r'^feedscore/', views.feedscore, name='feedscore',),
 
     url(r'^rankings/$', views.rankings, name='rankings',),
     url(r'^coach/$', views.coach, name='coach',),
