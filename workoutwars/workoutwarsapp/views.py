@@ -115,10 +115,6 @@ def indiv(request, username):
         workouts = []
         scores = []
 
-    # Get statistics information
-    num_workouts = len(workouts)
-    total_points = round(sum(scores), 2)
-
     # Get line chart data
     start_date = datetime.date(2017, 12, 18)
     today = datetime.date.today()
@@ -128,6 +124,11 @@ def indiv(request, username):
         diff = (w.workout_date - start_date).days
         if diff >= 0 and diff < len(chart_data):
             chart_data[diff][1] += w.score
+
+    # Get statistics information
+    num_workouts = len(workouts)
+    total_points = round(sum(scores), 2)
+    avg_per_day = round(total_points / float((today - start_date).days + 1), 2)
 
     # Pagination
     page = request.GET.get('page', 1)
@@ -147,6 +148,7 @@ def indiv(request, username):
             'workouts': workouts,
             'num_workouts': num_workouts,
             'total_points': total_points,
+            'avg_per_day': avg_per_day,
             'chart_data': chart_data
         }, {}
     )
