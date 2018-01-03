@@ -87,7 +87,7 @@ def coach(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(rankings, 10)
+    paginator = Paginator(rankings, 30)
     try:
         rankings = paginator.page(page)
     except PageNotAnInteger:
@@ -132,7 +132,7 @@ def indiv(request, username):
     # Pagination
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(workouts, 8)
+    paginator = Paginator(workouts, 20)
     try:
         workouts = paginator.page(page)
     except PageNotAnInteger:
@@ -156,7 +156,7 @@ def feed(request):
     workouts = Workout.objects.all().order_by('-workout_date')
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(workouts, 10)
+    paginator = Paginator(workouts, 20)
     try:
         workouts = paginator.page(page)
     except PageNotAnInteger:
@@ -194,7 +194,7 @@ def feedscore(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(workouts, 10)
+    paginator = Paginator(workouts, 20)
     try:
         workouts = paginator.page(page)
     except PageNotAnInteger:
@@ -236,7 +236,7 @@ def rankings(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(rankings, 10)
+    paginator = Paginator(rankings, 30)
     try:
         rankings = paginator.page(page)
     except PageNotAnInteger:
