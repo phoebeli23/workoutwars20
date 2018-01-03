@@ -132,7 +132,7 @@ def indiv(request, username):
     # Get statistics information
     num_workouts = len(workouts)
     total_points = round(sum(scores), 2)
-    avg_per_day = round(total_points / float(NUM_DAYS), 2)
+    avg_per_day = round(float(total_points) / float(NUM_DAYS), 2)
 
     # Pagination
     page = request.GET.get('page', 1)
