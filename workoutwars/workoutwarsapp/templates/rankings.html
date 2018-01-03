@@ -14,6 +14,7 @@
                       class="table table-dark">
                       <thead>
                         <tr>
+                          <th scope="col">Rank</th>
                           <th scope="col">Name</th>
                           <th scope="col">Team</th>
                           <th scope="col">Class</th>
@@ -21,8 +22,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for profile, total_score in rankings %}
+                        {% for place, profile, total_score in rankings %}
                           <tr>
+                            <td>{{ place }}</td>
                             <td>{{ profile.nick_name }}</td>
                             <td>{{ profile.team }}</td>
                             <td>{{ profile.class_name }}</td>

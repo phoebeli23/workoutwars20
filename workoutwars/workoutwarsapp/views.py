@@ -233,6 +233,7 @@ def rankings(request):
 
     zipped = zip(profiles, total_scores)
     rankings = sorted(zipped, key=lambda x: x[1], reverse=True)
+    rankings = [(x[0], x[1][0], x[1][1]) for x in list(enumerate(rankings))]
 
     page = request.GET.get('page', 1)
 
