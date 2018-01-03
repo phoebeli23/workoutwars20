@@ -42,7 +42,7 @@ def scoreboard(request):
             c_normalized = 0
         else:
             c_normalized = c_score / c_count
-        c_per_day = round(c_normalized / float(NUM_DAYS), 2)
+        c_per_day = round(float(c_normalized) / float(NUM_DAYS), 2)
         class_scores.append([c.plural, round(c_score, 2), round(c_normalized, 2), c_per_day])
         class_chart_data.append([str(c.plural), float(round(c_normalized, 2))])
 
@@ -54,7 +54,7 @@ def scoreboard(request):
             t_normalized = 0
         else:
             t_normalized = t_score / t_count
-        t_per_day = round(c_normalized / float(NUM_DAYS), 2)
+        t_per_day = round(float(t_normalized) / float(NUM_DAYS), 2)
         team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2), t_per_day])
         team_chart_data.append([str(t.name), float(round(t_normalized, 2))])
 
