@@ -60,7 +60,7 @@
             <div class="container">
               <h1>Scoreboards</h1>
               <hr class="my-4">
-              
+
               <p>See how your team and class are doing! Click <a href="{% url 'rankings' %}">here</a> to see individual rankings.</p>
 
               {% if team_scores %}
@@ -76,7 +76,7 @@
                   <thead>
                     <tr>
                       <th></th>
-                      {% for team_name, team_score, team_normalized in team_scores %}
+                      {% for team_name, team_score, team_normalized, per_day in team_scores %}
                         <th>{{ team_name }}</th>
                       {% endfor %}
                     </tr>
@@ -84,16 +84,22 @@
                   <tbody>
                     <tr>
                       <th>Total</th>
-                      {% for team_name, team_score, team_normalized in team_scores %}
+                      {% for team_name, team_score, team_normalized, per_day in team_scores %}
                         <th>{{ team_score }}</th>
                       {% endfor %}
                     </tr>
-                      <tr>
-                        <th>Normalized</th>
-                        {% for team_name, team_score, team_normalized in team_scores %}
-                          <th>{{ team_normalized }}</th>
-                        {% endfor %}
-                      </tr>
+                    <tr>
+                      <th>Normalized</th>
+                      {% for team_name, team_score, team_normalized, per_day in team_scores %}
+                        <th>{{ team_normalized }}</th>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <th>Per Day</th>
+                      {% for team_name, team_score, team_normalized, per_day in team_scores %}
+                        <th>{{ per_day }}</th>
+                      {% endfor %}
+                    </tr>
                   </tbody>
                 </table>
             </div>
@@ -109,7 +115,7 @@
                   <thead>
                     <tr>
                       <th></th>
-                      {% for class_name, class_score, class_normalized in class_scores %}
+                      {% for class_name, class_score, class_normalized, per_day in class_scores %}
                         <th>{{ class_name }}</th>
                       {% endfor %}
                     </tr>
@@ -117,16 +123,22 @@
                   <tbody>
                     <tr>
                       <th>Total</th>
-                    {% for class_name, class_score, class_normalized in class_scores %}
-                      <th>{{ class_score }}</th>
-                    {% endfor %}
+                      {% for class_name, class_score, class_normalized, per_day in class_scores %}
+                        <th>{{ class_score }}</th>
+                      {% endfor %}
                     </tr>
-                      <tr>
-                        <th>Normalized</th>
-                      {% for class_name, class_score, class_normalized in class_scores %}
+                    <tr>
+                      <th>Normalized</th>
+                      {% for class_name, class_score, class_normalized, per_day in class_scores %}
                         <th>{{ class_normalized }}</th>
                       {% endfor %}
-                      </tr>
+                    </tr>
+                    <tr>
+                      <th>Per Day</th>
+                      {% for class_name, class_score, class_normalized, per_day in class_scores %}
+                        <th>{{ per_day }}</th>
+                      {% endfor %}
+                    </tr>
                   </tbody>
                 </table>
               {% endif %}

@@ -15,6 +15,11 @@ import datetime
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
 from workoutwarsapp.models import User, Profile, Class, Team, Exercise, Workout
 
+# Globals
+START_DATE = datetime.date(2017, 12, 18)
+TODAY = datetime.date.today()
+NUM_DAYS = (TODAY - START_DATE).days + 1
+
 # Page views
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -37,7 +42,8 @@ def scoreboard(request):
             c_normalized = 0
         else:
             c_normalized = c_score / c_count
-        class_scores.append([c.plural, round(c_score, 2), round(c_normalized, 2)])
+        c_per_day = round(c_normalized / float(NUM_DAYS), 2)
+        class_scores.append([c.plural, round(c_score, 2), round(c_normalized, 2), c_per_day])
         class_chart_data.append([str(c.plural), float(round(c_normalized, 2))])
 
     for t in teams:
@@ -48,7 +54,8 @@ def scoreboard(request):
             t_normalized = 0
         else:
             t_normalized = t_score / t_count
-        team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2)])
+        t_per_day = round(c_normalized / float(NUM_DAYS), 2)
+        team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2), t_per_day])
         team_chart_data.append([str(t.name), float(round(t_normalized, 2))])
 
     try:
@@ -116,19 +123,16 @@ def indiv(request, username):
         scores = []
 
     # Get line chart data
-    start_date = datetime.date(2017, 12, 18)
-    today = datetime.date.today()
-    diff = (today - start_date).days
-    chart_data = [[start_date + datetime.timedelta(days=x), 0] for x in range(0, diff + 1)]
+    chart_data = [[START_DATE + datetime.timedelta(days=x), 0] for x in range(0, NUM_DAYS)]
     for w in workouts:
-        diff = (w.workout_date - start_date).days
+        diff = (w.workout_date - START_DATE).days
         if diff >= 0 and diff < len(chart_data):
             chart_data[diff][1] += w.score
 
     # Get statistics information
     num_workouts = len(workouts)
     total_points = round(sum(scores), 2)
-    avg_per_day = round(total_points / float((today - start_date).days + 1), 2)
+    avg_per_day = round(total_points / float(NUM_DAYS), 2)
 
     # Pagination
     page = request.GET.get('page', 1)
