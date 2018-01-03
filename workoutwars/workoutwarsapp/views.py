@@ -126,7 +126,7 @@ def indiv(request, username):
     chart_data = [[start_date + datetime.timedelta(days=x), 0] for x in range(0, diff + 1)]
     for w in workouts:
         diff = (w.workout_date - start_date).days
-        if diff > 0 and diff < len(chart_data):
+        if diff >= 0 and diff < len(chart_data):
             chart_data[diff][1] += w.score
 
     # Pagination
