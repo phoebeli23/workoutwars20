@@ -81,6 +81,10 @@ python manage.py makemigrations
 ```
 python manage.py migrate
 ```
+3. Collect all the css and images to make it look pretty:
+```
+python manage.py collectstatic
+```
 3. Now, you can launch the application! 
 ```
 python manage.py runserver
