@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
 
     # authentication pages
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^login/$', auth_views.LoginView, {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', auth_views.LogoutView, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup',),
 
     # workout pages
