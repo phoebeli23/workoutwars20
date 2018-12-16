@@ -1,4 +1,4 @@
-# Workout Wars 2017-2018
+# Workout Wars 2018-2019
 Pie Queens workout wars application
 
 ## Getting Started
