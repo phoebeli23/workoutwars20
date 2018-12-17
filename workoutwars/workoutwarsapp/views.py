@@ -16,7 +16,7 @@ from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
 from workoutwarsapp.models import User, Profile, Class, Team, Exercise, Workout
 
 # Globals
-START_DATE = datetime.date(2017, 12, 18)
+START_DATE = datetime.date(2018, 12, 15)
 TODAY = datetime.date.today()
 NUM_DAYS = (TODAY - START_DATE).days + 1
 
