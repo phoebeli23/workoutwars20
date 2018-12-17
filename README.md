@@ -203,6 +203,7 @@ Don't forget to save your changes!
 13. Check to see if the server is set up correctly by launching the application in developer mode (remember to replace `workoutwars18` with your repo name if you changed it):
 ```
 cd workoutwars18/workoutwars
+python manage.py collecstatic
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver 0.0.0.0:8080
