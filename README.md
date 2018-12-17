@@ -11,6 +11,7 @@ Pie Queens workout wars application
 git clone [YOUR-REPO-URL]
 ```
 For example, I would have run `git clone https://github.com/fabiola17lopez/workoutwars18.git`.
+
 4. You should now have the workout wars codebase downloaded on your computer.
 4. NOTE: only one person needs to fork the repository. Anyone else wanting to work on the application can be added as a collaborator on the repo. To add collaborators, select `Settings`>`Collaborators`. They will be able to clone and push updates to the forked repo.
 
@@ -31,6 +32,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 This is the interactive Python shell. Hit `CTRL + D` or type `exit()` to exit it.
+
 3. To avoid polluting our global scope with unnecessary packages, we are going to use a virtual environment to store our packages. One excellent virtual environment manager available for free is `virtualenv`. To install it:
 ```
 pip3 install virtualenv
@@ -44,6 +46,7 @@ cd workoutwars18
 virtualenv -p /usr/local/bin/python3 pqenv
 ```
 The `-p` flag tells `virtualenv` the path to the python version you want to use. If yours is different, make sure to replace it. The name `pqenv` is the environment name.
+
 6. You should now have a folder called `pqenv` inside your `workoutwars18` folder. Your structure should now look something like this:
 ```
 workoutwars18
@@ -111,6 +114,7 @@ So far you've launched the app locally and learned how to import data. But how d
 adduser pqadmin
 ```
 Make sure you remember this password! You can store it in the secret google doc for safekeeping.
+
 3. We will give this user admin privileges by running this command:
 ```
 adduser pqadmin sudo
@@ -164,6 +168,7 @@ sudo pip install uwsgi
 cd /home/pqadmin && mkvirtualenv pqenv
 ```
 After executing this command your prompt will change to something like ``(pqenv)pqadmin@piequeens~$`` indicating that you are using the sample virtual environment.
+
 9. Install your dependencies:
 ```
 pip install django
@@ -181,14 +186,20 @@ cp /home/pqadmin/workoutwars18/workoutwars/workoutwars/settings-example.py /home
 ```
 nano /home/pqadmin/workoutwars18/workoutwars/workoutwars/settings.py
 ```
-Turn off debug mode by finding the debug attribute in settings:
+Change the secret key to a long, random string of characters. Make sure to keep this a secret!
+```python
+SECRET_KEY = `very long string of random characters`
+```
+Change the debug attribute to false:
 ```python
 DEBUG = False
 ```
-Change the secret key to a long, random string of characters. Make sure to keep this a secret!
+Change the ALLOWED_HOSTS IP to the IP of your server:
+```python
+ALLOWED_HOSTS = ['workoutwars.piequeens.org', [YOUR SERVER IP], '127.0.0.1']
 ```
-SECRET_KEY = `very long string of random characters`
-```
+Don't forget to save your changes!
+
 13. Check to see if the server is set up correctly by launching the application in developer mode (remember to replace `workoutwars18` with your repo name if you changed it):
 ```
 cd workoutwars18/workoutwars
@@ -205,6 +216,7 @@ uWSGI is an application server that can communicate with applications over a sta
 uwsgi --http :8080 --home /home/pqadmin/Env/pqenv --chdir /home/pqadmin/workoutwars18/workoutwars -w workoutwars.wsgi
 ```
 If you go to [workoutwars.piequeens.org:8080](workoutwars.piequeens.org:8080), you should see the app again. When you're done testing this, take it down by pressing `CTRL+C` in the terminal.
+
 2. Now that you know that uWSGI works from the command line, we'll create configuration files for it to manage your app automatically. First create a directory to store these files:
 ```
 sudo mkdir -p /etc/uwsgi/sites
