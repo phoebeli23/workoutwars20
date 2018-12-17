@@ -6,3 +6,6 @@ migrations
 workoutwars/fixtures/**
 !workoutwars/fixtures/csv2json.py
 loaddata.sh
+settings.py
+static/
+.DS_Store

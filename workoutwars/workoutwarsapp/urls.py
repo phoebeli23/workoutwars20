@@ -3,6 +3,8 @@ from django.conf.urls import url
 from workoutwarsapp import views
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
 
 favicon_view = RedirectView.as_view(url='/static/images/myfavicon.ico', permanent=True)
 
@@ -11,8 +13,8 @@ urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
 
     # authentication pages
-    url(r'^login/$', auth_views.LoginView, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_views.LogoutView, {'next_page': '/'}, name='logout'),
+    url(r'^login/$', LoginView.as_view(template_name='login.html'), name='login'),
+    url(r'^logout/$', LogoutView.as_view(next_page=reverse_lazy('login')), name='logout'),
     url(r'^signup/$', views.signup, name='signup',),
 
     # workout pages
@@ -29,3 +31,4 @@ urlpatterns = [
     #favicon
     url(r'^favicon\.ico$', favicon_view,)
 ]
+
