@@ -408,7 +408,7 @@ ID | description | notes | increment | measurement | multiplier
 1 | downhill skiing | enter time on mountain only | 15 | mins | 1.25
 
 1. Create a csv file with the correct headers for each of the 3 tables. The structure is shown above. Save these as `teams.csv`, `classes.csv`, and `exercises.csv` respectively.
-2. Place these csv files into the `fixtures` folder (inside `workoutwarsapp`)
+2. Place these csv files into the `fixtures` folder (inside `workoutwars18/workoutwars`)
 3. Make sure your virtual environment is active (instructions listed above, if necessary)
 4. Install simplejson:
 ```
