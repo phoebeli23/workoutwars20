@@ -359,7 +359,7 @@ python manage.py createsuperuser
 widget=forms.SelectDateWidget(years=(2017, 2018),
         months={12:('December'), 1:('January')}),
 ```
-Next, open up `workoutwarsapp/views.py` and change the start date to the correct start date for this eyar.
+Next, open up `workoutwarsapp/views.py` and change the start date to the correct start date for this year.
 ```python
 START_DATE = datetime.date(2017, 12, 18)
 ```
