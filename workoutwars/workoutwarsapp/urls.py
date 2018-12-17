@@ -14,7 +14,7 @@ urlpatterns = [
 
     # authentication pages
     url(r'^login/$', LoginView.as_view(template_name='login.html'), name='login'),
-    url(r'^logout/$', LogoutView.as_view(next_page=reverse_lazy('/')), name='logout'),
+    url(r'^logout/$', LogoutView.as_view(next_page=reverse_lazy('login')), name='logout'),
     url(r'^signup/$', views.signup, name='signup',),
 
     # workout pages
