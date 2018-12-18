@@ -380,7 +380,7 @@ git pull origin master
 ```
 3. Let uWSGI and nginx know that the files have been updated:
 ```
-touch /etc/uwsgi/sites/workoutwars.ini
+sudo touch /etc/uwsgi/sites/workoutwars.ini
 ```
 4. You should now see your changes reflected in production!
 

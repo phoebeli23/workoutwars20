@@ -30,9 +30,9 @@
                         {% endfor %}
                       </tbody>
                     </table>
-                {% if workouts.has_other_pages %}
+
+              {% if workouts.has_other_pages %}
               <ul class="pagination pagination-dark justify-content-md-center">
-                  {% endif %}
 
                 {% if workouts.has_previous %}
                   <li class="page-item"><a class="page-link" href="?page={{ workouts.previous_page_number }}">Previous</a></li>
@@ -53,6 +53,7 @@
                 {% else %}
                   <li class="disabled page-item"><span class="page-link">Next</span></li>
                 {% endif %}
+              {% endif %}
 
               </ul>
                 {% else %}
