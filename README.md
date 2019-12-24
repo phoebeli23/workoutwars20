@@ -203,7 +203,7 @@ Don't forget to save your changes!
 13. Check to see if the server is set up correctly by launching the application in developer mode (remember to replace `workoutwars18` with your repo name if you changed it):
 ```
 cd workoutwars18/workoutwars
-python manage.py collecstatic
+python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver 0.0.0.0:8080
@@ -297,7 +297,7 @@ server {
 ```
 4. Create a symlink to nginx’s `sites-enabled` directory to enable your site configuration file:
 ```
-sudo ln -s /etc/nginx/sites-available/sample /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/workoutwars /etc/nginx/sites-enabled
 ```
 5. Check nginx’s configuration and restart it:
 ```
