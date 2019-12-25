@@ -45,3 +45,5 @@ ID,name,description,notes,increment,measurement,multiplier
 44,Mental Strength - Yellow,Mental Strength - Repeatable (Yellow),,15,mins,2
 45,Mental Strength - Blue,Mental Strength - One time (Blue),,15,mins,3
 46,Mental Strength - Purple,"Mental Strength - One time, juicy (Purple)",,15,mins,5
+47,Grow our Sport,Grow our Sport,,1,person,3
+48,Grow our Sport - Youth,Grow our Sport - Youth,Person is <18 years old,1,person,4
