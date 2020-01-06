@@ -4,47 +4,47 @@ ID,name,description,notes,increment,measurement,multiplier
 3,Static Stretching/Foam Rolling,Static Stretching/Foam Rolling,,15,mins,1
 4,Burpees,Burpees,,20,reps,1.25
 5,Abs,Abs,,10,mins,1.25
-,,,,,,
-6,Tabatas,Tabatas (Non-Sprinting),,4,mins,1.25
-7,Badminton,Badminton,,15,mins,1.5
-8,Biking,Biking,,15,mins,1.5
-9,Climbing/Bouldering,"Climbing/Bouldering (only count time climbing, not resting or belay)","only count time climbing, not resting or belay",15,mins,1.5
-10,Cross country Skiing,Cross country Skiing,,15,mins,1.5
-11,Elliptical,Elliptical,,15,mins,1.5
-12,Physical Therapy,Physical Therapy,,15,mins,1.5
-13,Pilates,Pilates,,15,mins,1.5
-14,Rollerblading/Ice Skating,Rollerblading/Ice Skating,,15,mins,1.5
-15,Running,Running,,15,mins,1.5
-16,Surfing,Surfing,,15,mins,1.5
-17,Throwing,Throwing,,15,mins,3
-18,Yoga,Yoga,,15,mins,1.5
-19,Zumba,Zumba,,15,mins,1.5
-20,Agility Drills,Agility Drills (cones/ladders),,15,mins,1.75
-21,Basketball,Basketball,,15,mins,1.75
-22,CrossFit,CrossFit,,15,mins,1.75
-23,Hill Sprints,Hill Sprints,,10,mins,1.75
-24,Hockey,Hockey,,15,mins,1.75
-25,Jump Roping,Jump Roping,,15,mins,1.75
-26,Kayaking/Paddling,Kayaking/Paddling,,15,mins,1.75
-27,Kickboxing,Kickboxing,,15,mins,1.75
-28,Kung Fu/ Zen Throwing,Kung Fu/ Zen Throwing,,15,mins,3.5
-29,Lifting/Weight Training,Lifting/Weight Training,,15,mins,1.75
-30,P90x or Insanity Workout,P90x or Insanity Workout,,15,mins,1.75
-31,Plyometrics,"Plyometrics (squats, lunges, etc.)",,15,mins,1.75
-32,Rowing,Rowing,,15,mins,1.75
-33,Soccer,Soccer,,15,mins,1.5
-34,Spin Class,Spin Class,,15,mins,1.75
-35,Sprinting/Spinning Tabatas,Sprinting/Spinning Tabatas,,4,mins,1.85
-36,Sprints,Sprints,,15,mins,1.85
-37,Stadiums/Stairs,Stadiums/Stairs,,15,mins,1.75
-38,Swimming,Swimming,,15,mins,1.75
-39,Tennis,Tennis,,15,mins,1.5
-40,Track Workout,Track Workout,,15,mins,1.85
-41,Volleyball,Volleyball,,15,mins,1.5
-42,Frisbee,"Frisbee (beach, goaltie, pick-up) - Only count time playing, not sideline","Only count time playing, not sideline",15,mins,4
-43,Fun with Friends Drills,Fun with Friends Drills (2+ people),,15,mins,4
-44,Mental Strength - Yellow,Mental Strength - Repeatable (Yellow),,15,mins,2
-45,Mental Strength - Blue,Mental Strength - One time (Blue),,15,mins,3
-46,Mental Strength - Purple,"Mental Strength - One time, juicy (Purple)",,15,mins,5
-47,Grow our Sport,Grow our Sport,,1,person,3
-48,Grow our Sport - Youth,Grow our Sport - Youth,Person is <18 years old,1,person,4
+6,test,test,,10,mins,1.25
+7,Tabatas,Tabatas (Non-Sprinting),,4,mins,1.25
+8,Badminton,Badminton,,15,mins,1.5
+9,Biking,Biking,,15,mins,1.5
+10,Climbing/Bouldering,"Climbing/Bouldering (only count time climbing, not resting or belay)","only count time climbing, not resting or belay",15,mins,1.5
+11,Cross country Skiing,Cross country Skiing,,15,mins,1.5
+12,Elliptical,Elliptical,,15,mins,1.5
+13,Physical Therapy,Physical Therapy,,15,mins,1.5
+14,Pilates,Pilates,,15,mins,1.5
+15,Rollerblading/Ice Skating,Rollerblading/Ice Skating,,15,mins,1.5
+16,Running,Running,,15,mins,1.5
+17,Surfing,Surfing,,15,mins,1.5
+18,Throwing,Throwing,,15,mins,3
+19,Yoga,Yoga,,15,mins,1.5
+20,Zumba,Zumba,,15,mins,1.5
+21,Agility Drills,Agility Drills (cones/ladders),,15,mins,1.75
+22,Basketball,Basketball,,15,mins,1.75
+23,CrossFit,CrossFit,,15,mins,1.75
+24,Hill Sprints,Hill Sprints,,10,mins,1.75
+25,Hockey,Hockey,,15,mins,1.75
+26,Jump Roping,Jump Roping,,15,mins,1.75
+27,Kayaking/Paddling,Kayaking/Paddling,,15,mins,1.75
+28,Kickboxing,Kickboxing,,15,mins,1.75
+29,Kung Fu/ Zen Throwing,Kung Fu/ Zen Throwing,,15,mins,3.5
+30,Lifting/Weight Training,Lifting/Weight Training,,15,mins,1.75
+31,P90x or Insanity Workout,P90x or Insanity Workout,,15,mins,1.75
+32,Plyometrics,"Plyometrics (squats, lunges, etc.)",,15,mins,1.75
+33,Rowing,Rowing,,15,mins,1.75
+34,Soccer,Soccer,,15,mins,1.5
+35,Spin Class,Spin Class,,15,mins,1.75
+36,Sprinting/Spinning Tabatas,Sprinting/Spinning Tabatas,,4,mins,1.85
+37,Sprints,Sprints,,15,mins,1.85
+38,Stadiums/Stairs,Stadiums/Stairs,,15,mins,1.75
+39,Swimming,Swimming,,15,mins,1.75
+40,Tennis,Tennis,,15,mins,1.5
+41,Track Workout,Track Workout,,15,mins,1.85
+42,Volleyball,Volleyball,,15,mins,1.5
+43,Frisbee,"Frisbee (beach, goaltie, pick-up) - Only count time playing, not sideline","Only count time playing, not sideline",15,mins,4
+44,Fun with Friends Drills,Fun with Friends Drills (2+ people),,15,mins,4
+45,Mental Strength - Yellow,Mental Strength - Repeatable (Yellow),,15,mins,2
+46,Mental Strength - Blue,Mental Strength - One time (Blue),,15,mins,3
+47,Mental Strength - Purple,"Mental Strength - One time, juicy (Purple)",,15,mins,5
+48,Grow our Sport,Grow our Sport,,1,person,3
+49,Grow our Sport - Youth,Grow our Sport - Youth,Person is <18 years old,1,person,4
