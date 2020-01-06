@@ -15,7 +15,7 @@ ID,name,description,notes,increment,measurement,multiplier
 14,Rollerblading/Ice Skating,Rollerblading/Ice Skating,,15,mins,1.5
 15,Running,Running,,15,mins,1.5
 16,Surfing,Surfing,,15,mins,1.5
-17,Throwing,Throwing,,15,mins,3
+17,Throwing,Throwing,,15,mins,1.5
 18,Yoga,Yoga,,15,mins,1.5
 19,Zumba,Zumba,,15,mins,1.5
 20,Agility Drills,Agility Drills (cones/ladders),,15,mins,1.75
@@ -26,7 +26,7 @@ ID,name,description,notes,increment,measurement,multiplier
 25,Jump Roping,Jump Roping,,15,mins,1.75
 26,Kayaking/Paddling,Kayaking/Paddling,,15,mins,1.75
 27,Kickboxing,Kickboxing,,15,mins,1.75
-28,Kung Fu/ Zen Throwing,Kung Fu/ Zen Throwing,,15,mins,3.5
+28,Kung Fu/ Zen Throwing,Kung Fu/ Zen Throwing,,15,mins,1.75
 29,Lifting/Weight Training,Lifting/Weight Training,,15,mins,1.75
 30,P90x or Insanity Workout,P90x or Insanity Workout,,15,mins,1.75
 31,Plyometrics,"Plyometrics (squats, lunges, etc.)",,15,mins,1.75
@@ -40,8 +40,8 @@ ID,name,description,notes,increment,measurement,multiplier
 39,Tennis,Tennis,,15,mins,1.5
 40,Track Workout,Track Workout,,15,mins,1.85
 41,Volleyball,Volleyball,,15,mins,1.5
-42,Frisbee,"Frisbee (beach, goaltie, pick-up) - Only count time playing, not sideline","Only count time playing, not sideline",15,mins,4
-43,Fun with Friends Drills,Fun with Friends Drills (2+ people),,15,mins,4
+42,Frisbee,"Frisbee (beach, goaltie, pick-up) - Only count time playing, not sideline","Only count time playing, not sideline",15,mins,2
+43,Fun with Friends Drills,Fun with Friends Drills (2+ people),,15,mins,2
 44,Mental Strength - Yellow,Mental Strength - Repeatable (Yellow),,15,mins,2
 45,Mental Strength - Blue,Mental Strength - One time (Blue),,15,mins,3
 46,Mental Strength - Purple,"Mental Strength - One time, juicy (Purple)",,15,mins,5
