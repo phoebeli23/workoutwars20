@@ -47,7 +47,7 @@ class AddWorkoutForm(forms.ModelForm):
         min_value=0, max_digits=5, decimal_places=2,
         required=True,
         label="Duration (in mins)",
-        help_text="unless pushups or burpees, then enter quantity")
+        help_text="unless pushups or burpees (quantity) or Grow Our Sport (number of people)")
     with_other_class = forms.BooleanField(required=False)
 
     class Meta:
