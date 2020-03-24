@@ -33,7 +33,7 @@ class SignUpForm(UserCreationForm):
 class AddWorkoutForm(forms.ModelForm):
     workout_date = forms.DateField(
         initial=timezone.now,
-        widget=forms.SelectDateWidget(years=(2019, 2020),
+        widget=forms.SelectDateWidget(years=(2020),
             months={12:('December'), 1:('January')}),
         label="Workout Date",
         required=True,
@@ -47,7 +47,7 @@ class AddWorkoutForm(forms.ModelForm):
         min_value=0, max_digits=5, decimal_places=2,
         required=True,
         label="Duration (in mins)",
-        help_text="unless pushups or burpees (quantity) or Grow Our Sport (number of people)")
+        help_text="unless pushups or burpees (quantity)")
     with_other_class = forms.BooleanField(required=False)
 
     class Meta:
