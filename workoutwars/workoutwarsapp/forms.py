@@ -34,7 +34,7 @@ class AddWorkoutForm(forms.ModelForm):
     workout_date = forms.DateField(
         initial=timezone.now,
         widget=forms.SelectDateWidget(years=(range(2020, 2021)),
-            months={12:('December'), 1:('January')}),
+            months={4:('April'), 3:('March')}),
         label="Workout Date",
         required=True,
         help_text="When did you do the workout?"
