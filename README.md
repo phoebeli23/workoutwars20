@@ -141,8 +141,7 @@ ssh pqadmin@workoutwars.piequeens.org
 2. Install the system packages required for nginx, the SQLite Python bindings, and managing Python Tools:
 ```
 sudo apt-get update
-sudo apt-get install nginx python3-dev python3-pip
-((((sudo apt-get install build-essential nginx python-dev python3-pip python-sqlite sqlite git))))
+sudo apt-get install nginx python3-dev python3-pip git
 ```
 3. Install `virtualenv` and `virtualenvwrapper`:
 ```
