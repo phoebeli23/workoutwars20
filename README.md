@@ -1,16 +1,16 @@
-# Workout Wars 2018-2019
+# Workout Wars 2020
 Pie Queens workout wars application
 
 ## Getting Started
 
 ### Fork and Clone the Git Repository
 1. Make sure you are signed into github and have git installed on your computer.
-2. In the top right corner of this page, click `Fork`. This will create your own copy of the codebase on your account. Feel free to rename the app from `workoutwars18` to fit the year.
+2. In the top right corner of this page, click `Fork`. This will create your own copy of the codebase on your account. Feel free to rename the app from `workoutwars20` to fit the year.
 3. From your newly forked repository on Github, click `Clone or Download` and copy the http url. Then, from your terminal, navigate to where you'd like to store the workout wars files and run the following command:
 ```
 git clone [YOUR-REPO-URL]
 ```
-For example, I would have run `git clone https://github.com/fabiola17lopez/workoutwars18.git`.
+For example, I would have run `git clone https://github.com/cidneyweng/workoutwars20.git`.
 
 4. You should now have the workout wars codebase downloaded on your computer.
 4. NOTE: only one person needs to fork the repository. Anyone else wanting to work on the application can be added as a collaborator on the repo. To add collaborators, select `Settings`>`Collaborators`. They will be able to clone and push updates to the forked repo.
@@ -37,9 +37,9 @@ This is the interactive Python shell. Hit `CTRL + D` or type `exit()` to exit it
 ```
 pip3 install virtualenv
 ```
-4. Navigate into your cloned repository (make sure you use the name of your repo if you changed it from `workoutwars18`):
+4. Navigate into your cloned repository (make sure you use the name of your repo if you changed it from `workoutwars20`):
 ```
-cd workoutwars18
+cd workoutwars20
 ```
 5. Now we need to create the environment to hold our requirements.
 ```
@@ -47,9 +47,9 @@ virtualenv -p /usr/local/bin/python3 pqenv
 ```
 The `-p` flag tells `virtualenv` the path to the python version you want to use. If yours is different, make sure to replace it. The name `pqenv` is the environment name.
 
-6. You should now have a folder called `pqenv` inside your `workoutwars18` folder. Your structure should now look something like this:
+6. You should now have a folder called `pqenv` inside your `workoutwars20` folder. Your structure should now look something like this:
 ```
-workoutwars18
+workoutwars20
 ├── pqenv
 ├── workoutwars
 ├── .gitignore
@@ -76,10 +76,10 @@ pip3 install django-bootstrap4
 
 ### Launching Application Locally
 Launching the app locally is very simple. You simply need to prepare a few things before the app will run for the first time.
-1. Make a copy of `settings-example.py` (in `workoutwars18/workoutwars/workoutwars`) in the same directory and title it `settings.py`.
+1. Make a copy of `settings-example.py` (in `workoutwars20/workoutwars/workoutwars`) in the same directory and title it `settings.py`.
 2. Open `settings.py` and make sure that `DEBUG` is set to `True`.
 3. Change the `SECRET_KEY` to a long, random string of characters. This is for security reasons.
-4. Navigate to the app root (`workoutwars18/workoutwars`) and prepare your models for the database:
+4. Navigate to the app root (`workoutwars20/workoutwars`) and prepare your models for the database:
 ```
 python manage.py makemigrations
 ```
@@ -100,7 +100,7 @@ So far you've launched the app locally and learned how to import data. But how d
 1. Follow Linode's [Getting Started Guide](https://linode.com/docs/getting-started/) to set up the server. A few things to note:
   - You will have to create an account and put in billing information. Don't worry - your treasurer will reimburse you for the cost of the server. There are also many promo codes out there for new accounts so get yourself some free credit!
   - The 2GB Linode with 50GB of storage is more than enough for us.
-  - **IMPORTANT**: Make sure you select **Ubuntu 14.04** as your OS - this will be important later. (Hopefully we are able to upgrade to Ubuntu 16 soon and can update these docs accordingly)
+  - **IMPORTANT**: Make sure you select **Ubuntu 16.04** as your OS - this will be important later.
   - You can choose your hostname to be whatever you want. I named mine `piequeens`
   - When updating /etc/hosts, you can use `workoutwars.piequeens.org` as your FQDN. Make sure to add both the IPv4 and IPv6 lines to the file. For example:
   ```
@@ -133,58 +133,56 @@ Next you need to set up workoutwars.piequeens.org to point to your new server. F
 3. Find the record named `workoutwars` of type `A` and edit the IP to point to the public **IPv4** address of your new server.
 4. Find the record named `workoutwars` of type `AAAA` and edit the IP to point to the public **IPv6** address of your new server.  Make sure to save your changes.
 
-### Set up your Environment on Ubuntu 14.04
+### Set up your Environment on Ubuntu 16.04
 1. Now that the server and domain are ready to be used, we can ssh into our new user with our new domain. To exit out of the root account, press CTRL+D. Then ssh back in with the new account:
 ```
 ssh pqadmin@workoutwars.piequeens.org
 ```
 2. Install the system packages required for nginx, the SQLite Python bindings, and managing Python Tools:
 ```
-sudo apt-get install build-essential nginx python-dev python3-pip python-sqlite sqlite git
+sudo apt-get update
+sudo apt-get install nginx python3-dev python3-pip git
 ```
-3. Upgrade pip by running:
+3. Install `virtualenv` and `virtualenvwrapper`:
 ```
-sudo pip install --upgrade pip
+sudo -H pip3 install virtualenv virtualenvwrapper
 ```
-4. Install `virtualenv` and `virtualenv` wrapper:
+4. For `virtualenvwrapper` to function correctly, run the following commands:
 ```
-sudo -H pip install virtualenv virtualenvwrapper
-```
-5. For `virtualenvwrapper` to function correctly, run the following commands:
-```
+echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
 echo "export WORKON_HOME=~/Env" >> ~/.bashrc
 echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 ```
-6. Activate virtualenvwrapper in the current session:
+5. Activate virtualenvwrapper in the current session:
 ```
 source ~/.bashrc
 ```
-7. Install uWSGI using pip:
+6. Install uWSGI using pip:
 ```
-sudo pip install uwsgi
+sudo pip3 install uwsgi
 ```
-8. Be sure that you’re in the `pqadmin` user’s home directory and create the virtual environment for the application:
+7. Be sure that you’re in the `pqadmin` user’s home directory and create the virtual environment for the application:
 ```
 cd /home/pqadmin && mkvirtualenv pqenv
 ```
 After executing this command your prompt will change to something like ``(pqenv)pqadmin@piequeens~$`` indicating that you are using the sample virtual environment.
 
-9. Install your dependencies:
+8. Install your dependencies:
 ```
 pip install django
 pip install django-bootstrap4
 ```
-10. Clone your forked github repository:
+9. Clone your forked github repository:
 ```
 git clone [your repo http url].git
 ```
-11. Make a copy of `settings-example.py` called `settings.py`:
+10. Make a copy of `settings-example.py` called `settings.py`:
 ```
-cp /home/pqadmin/workoutwars18/workoutwars/workoutwars/settings-example.py /home/pqadmin/workoutwars18/workoutwars/workoutwars/settings.py
+cp /home/pqadmin/workoutwars20/workoutwars/workoutwars/settings-example.py /home/pqadmin/workoutwars20/workoutwars/workoutwars/settings.py
 ```
-12. Open `settings.py`:
+11. Open `settings.py`:
 ```
-nano /home/pqadmin/workoutwars18/workoutwars/workoutwars/settings.py
+nano /home/pqadmin/workoutwars20/workoutwars/workoutwars/settings.py
 ```
 Change the secret key to a long, random string of characters. Make sure to keep this a secret!
 ```python
@@ -200,9 +198,9 @@ ALLOWED_HOSTS = ['workoutwars.piequeens.org', [YOUR SERVER IP], '127.0.0.1']
 ```
 Don't forget to save your changes!
 
-13. Check to see if the server is set up correctly by launching the application in developer mode (remember to replace `workoutwars18` with your repo name if you changed it):
+12. Check to see if the server is set up correctly by launching the application in developer mode (remember to replace `workoutwars20` with your repo name if you changed it):
 ```
-cd workoutwars18/workoutwars
+cd workoutwars20/workoutwars
 python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate
@@ -214,7 +212,7 @@ Navigate to [workoutwars.piequeens.org:8080](workoutwars.piequeens.org:8080) in 
 uWSGI is an application server that can communicate with applications over a standard interface called WSGI.
 1. Quickly test the application server by passing the information for our app:
 ```
-uwsgi --http :8080 --home /home/pqadmin/Env/pqenv --chdir /home/pqadmin/workoutwars18/workoutwars -w workoutwars.wsgi
+uwsgi --http :8080 --home /home/pqadmin/Env/pqenv --chdir /home/pqadmin/workoutwars20/workoutwars -w workoutwars.wsgi
 ```
 If you go to [workoutwars.piequeens.org:8080](workoutwars.piequeens.org:8080), you should see the app again. When you're done testing this, take it down by pressing `CTRL+C` in the terminal.
 
@@ -226,7 +224,7 @@ sudo mkdir -p /etc/uwsgi/sites
 ```
 sudo nano /etc/uwsgi/sites/workoutwars.ini
 ```
-4. Paste the following into the file and save it (remember to replace `workoutwars18` with your repo name):
+4. Paste the following into the file and save it (remember to replace `workoutwars20` with your repo name):
 
 ```
 [uwsgi]
@@ -235,37 +233,42 @@ uid = pqadmin
 projenv = pqenv
 base = /home/%(uid)
 
-chdir = %(base)/workoutwars18/%(project)
+chdir = %(base)/workoutwars20/%(project)
 home = %(base)/Env/%(projenv)
 module = %(project).wsgi:application
 
 master = true
-processes = 2
+processes = 5
 
-socket = %(base)/workoutwars18/%(project)/%(project).sock
-chmod-socket = 664
+socket = /run/uwsgi/%(project).sock
+chown-socket = %(uid):www-data
+chmod-socket = 660
 vacuum = true
 ```
-5.  Create an Upstart job for uWSGI:
+5.  Create an systemd unit file to manage the uWSGI emperor process and automatically start uWSGI at boot:
 ```
-sudo nano /etc/init/uwsgi.conf 
+sudo nano /etc/systemd/system/uwsgi.service
 ```
 6. Paste the following contents in it and save:
 
 ```
-description  "uWSGI"
-start on runlevel [2345]
-stop on runlevel [06]
-respawn
+[Unit]
+Description=uWSGI Emperor service
 
-env UWSGI=/usr/local/bin/uwsgi
-env LOGTO=/var/log/uwsgi.log
+[Service]
+ExecStartPre=/bin/bash -c 'mkdir -p /run/uwsgi; chown pqadmin:www-data /run/uwsgi'
+ExecStart=/usr/local/bin/uwsgi --emperor /etc/uwsgi/sites
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
 
-exec $UWSGI --master --emperor /etc/uwsgi/sites --die-on-term --uid pqadmin --gid www-data --logto $LOGTO
+[Install]
+WantedBy=multi-user.target
 ```
 7. Start the `uwsgi` service:
 ```
-sudo service uwsgi start
+sudo systemctl start uwsgi
 ```
 
 ### Configure nginx
@@ -278,7 +281,7 @@ sudo rm /etc/nginx/sites-enabled/default
 ```
 sudo nano /etc/nginx/sites-available/workoutwars
 ```
-3. Inside, paste the following (remember to replace `workoutwars18` with your repo name):
+3. Inside, paste the following (remember to replace `workoutwars20` with your repo name):
 ```
 server {
     listen 80;
@@ -286,12 +289,12 @@ server {
 
     location = /favicon.ico {access_log off; log_not_found off; }
     location /static/ {
-        root /home/pqadmin/workoutwars18/workoutwars;
+        root /home/pqadmin/workoutwars20/workoutwars;
     }
 
     location / {
         include         uwsgi_params;
-        uwsgi_pass      unix:/home/pqadmin/workoutwars18/workoutwars/workoutwars.sock;
+        uwsgi_pass      unix:/run/uwsgi/workoutwars.sock;
     }
 }
 ```
@@ -301,13 +304,18 @@ sudo ln -s /etc/nginx/sites-available/workoutwars /etc/nginx/sites-enabled
 ```
 5. Check nginx’s configuration and restart it:
 ```
-sudo service nginx configtest && sudo service nginx restart
+sudo nginx -t
+sudo systemctl restart nginx
 ```
-6. You should now be able to reach workout wars at [workoutwars.piequeens.org](workoutwars.piequeens.org)!
+6. Allow uWSGI and nginx to start automatically at boot:
+```
+sudo systemctl enable nginx
+sudo systemctl enable uwsgi
+```
+7. You should now be able to reach workout wars at [workoutwars.piequeens.org](workoutwars.piequeens.org)!
 
 ### Useful Links
-- We roughly followed [Linode's django deployment guide](https://linode.com/docs/web-servers/nginx/deploy-django-applications-using-uwsgi-and-nginx-on-ubuntu-14-04/) to deploy workout wars. If anything doesn't make sense, this is a great place to start.
-- [Digital Ocean's django deployment guide](https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-uwsgi-and-nginx-on-ubuntu-16-04) has more in-depth explanations about what each step is actually doing. If you get confused, this is a great resource! The troubleshooting section at the bottom is especially useful **if you're having trouble configuring uWSGI and/or nginx**. However, please note that this guide is for a newer version of ubuntu that we are not using. 
+- We roughly followed [Digital Ocean's django deployment guide](https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-uwsgi-and-nginx-on-ubuntu-16-04) to deploy workout wars. If anything doesn't make sense, this is a great place to start. It has more in-depth explanations about what each step is actually doing. If you get confused, this is a great resource! The troubleshooting section at the bottom is especially useful **if you're having trouble configuring uWSGI and/or nginx**. 
 
 ## Understanding How the Application Works
 
@@ -375,7 +383,7 @@ workon pqenv
 ```
 2. Navigate to your repository and pull changes:
 ```
-cd /home/pqadmin/workoutwars18
+cd /home/pqadmin/workoutwars20
 git pull origin master
 ```
 3. Let uWSGI and nginx know that the files have been updated:
@@ -409,7 +417,7 @@ ID | description | notes | increment | measurement | multiplier
 1 | downhill skiing | enter time on mountain only | 15 | mins | 1.25
 
 1. Create a csv file with the correct headers for each of the 3 tables. The structure is shown above. Save these as `teams.csv`, `classes.csv`, and `exercises.csv` respectively.
-2. Place these csv files into the `fixtures` folder (inside `workoutwars18/workoutwars`)
+2. Place these csv files into the `fixtures` folder (inside `workoutwars20/workoutwars`)
 3. Make sure your virtual environment is active (instructions listed above, if necessary)
 4. Install simplejson:
 ```
