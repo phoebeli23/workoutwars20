@@ -22,7 +22,7 @@ class SignUpForm(UserCreationForm):
     #     )
     class_name = forms.ModelChoiceField(
         queryset=Class.objects.all(),
-        label='Class',
+        label='Pods',
         required=True
          )
 
