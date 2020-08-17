@@ -6,7 +6,7 @@ media query since this is the default in Bootstrap*/
 
 /*Medium devices (tablets, 768px and up)*/
 @media screen and (min-width: 768px) {
-    .purple-text {
+    .red-text {
         font-size: 110px !important;
         margin-bottom: -40px !important;
     }
@@ -37,8 +37,8 @@ Large devices (desktops, 992px and up)*/
 /*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {}
 
-.purple-text {
-    color: #7e55ff;
+.red-text {
+    color: #FF0000;
     font-family: 'Permanent Marker', cursive;
     font-size: 60px;
     margin-bottom: -20px;
@@ -47,21 +47,25 @@ Large devices (desktops, 992px and up)*/
 
 .white-text {
     font-family: 'Roboto', sans-serif;
-    color: #ffffff;
+    color: #212529;
     letter-spacing: 10px;
     font-size: 48px;
     text-align: center;
 }
 
+.text-muted {
+    color: #596066!important;
+}
+
 
 .navbar-dark .navbar-nav .nav-link {
-    color: #ffffff !important;
+    color: #212529 !important;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
 }
 
 .navbar-dark .navbar-brand {
-    color: #ffffff !important;
+    color: #212529 !important;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
 }
@@ -71,13 +75,13 @@ Large devices (desktops, 992px and up)*/
 }
 
 .form {
-    color: white;
+    color: #212529;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
 }
 
 p, #login-page h1, #add-page h1, #signup h1, #scoreboard h1, #scoreboard h2 {
-    color: white;
+    color: #212529;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
 }
@@ -106,8 +110,8 @@ body {
 }
 
 .btn-primary {
-    background-color: #7e55ff !important;
-    border-color: #7e55ff !important;
+    background-color: #FF0000 !important;
+    border-color: #FF0000 !important;
 }
 
 .navbar {
@@ -119,8 +123,8 @@ body {
 }
 
 .jumbotron {
-    background-color: #212529 !important;
-    color: white;
+    background-color: white !important;
+    color: #212529;
     margin-bottom: 10%;
 }
 
@@ -130,7 +134,7 @@ body {
 }
 
 .display-3 {
-    color: white;
+    color: #212529;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
     font-size: 36px;
@@ -140,7 +144,7 @@ body {
     margin-bottom: 20%;
 }
 .navbar-dark .navbar-text {
-    color: #ffffff;
+    color: #212529;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
     font-size: 24px;
@@ -151,10 +155,31 @@ body {
 }
 
 a {
-    color: #8375ff!important;
+    color: #FF0000!important;
 }
 
 .page-item.active .page-link {
-    background-color: #7e55ff !important;
-    border-color: #7e55ff !important;
+    background-color: #FF0000 !important;
+    border-color: #FF0000 !important;
+}
+
+.table-light {
+    background-color: #fafafa;
+}
+
+.table-light th, .table-light thead th, .table-light td, .table-light tbody+tbody {
+    border-color: #a6aaad;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.images-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
 }
