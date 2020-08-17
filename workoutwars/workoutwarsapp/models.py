@@ -89,8 +89,8 @@ class Workout(models.Model):
         m = self.exercise.multiplier
         s = d / i * m
         #Bonus point for working out with a teammate from another class
-        if self.with_other_class:
-            s += 1
+        # if self.with_other_class:
+        #     s += 1
         return round(s, 2)
 
     def __unicode__(self):
