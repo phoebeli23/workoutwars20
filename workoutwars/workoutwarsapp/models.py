@@ -79,7 +79,7 @@ class Workout(models.Model):
     user = models.ForeignKey(User, related_name='workouts', on_delete=models.CASCADE)
     exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE, null=True)
     duration = models.DecimalField(max_digits = 5, decimal_places = 2,default = 15)
-    # with_other_class = models.BooleanField(default=False)
+    with_other_class = models.BooleanField(default=False)
     score = models.DecimalField(max_digits = 5, decimal_places = 2,default = 1.0)
 
     @property

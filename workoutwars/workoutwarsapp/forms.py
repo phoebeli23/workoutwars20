@@ -52,4 +52,4 @@ class AddWorkoutForm(forms.ModelForm):
 
     class Meta:
         model = Workout
-        fields = ('workout_date', 'exercise', 'duration', )
+        fields = ('workout_date', 'exercise', 'duration')
