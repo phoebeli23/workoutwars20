@@ -289,7 +289,7 @@ server {
 
     location = /favicon.ico {access_log off; log_not_found off; }
     location /static/ {
-        root /home/pqadmin/workoutwars20/workoutwars;
+        root /home/pqadmin/workoutwars20/workoutwars/workoutwarsapp;
     }
 
     location / {
