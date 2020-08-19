@@ -40,7 +40,7 @@ class AddWorkoutForm(forms.ModelForm):
         help_text="When did you do the workout?"
         )
     exercise = forms.ModelChoiceField(
-        queryset=Exercise.objects.all().order_by('name'),
+        queryset=Exercise.objects.all().order_by('description'),
         required=True
         )
     duration = forms.DecimalField(
@@ -48,8 +48,8 @@ class AddWorkoutForm(forms.ModelForm):
         required=True,
         label="Duration (in mins)",
         help_text="unless pushups or burpees (quantity)")
-    with_other_class = forms.BooleanField(required=False)
+    # with_other_class = forms.BooleanField(required=False)
 
     class Meta:
         model = Workout
-        fields = ('workout_date', 'exercise', 'duration', 'with_other_class', )
+        fields = ('workout_date', 'exercise', 'duration')

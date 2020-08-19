@@ -1,4 +1,5 @@
 ID,name,description,notes,increment,measurement,multiplier
+0,Walking,Walking (brisk pace),,15,mins,0.75
 1,Badminton,Badminton,,15,mins,1
 2,Basketball,Basketball,,15,mins,1
 3,Hiking,Hiking,,15,mins,1
@@ -21,13 +22,14 @@ ID,name,description,notes,increment,measurement,multiplier
 22,Zumba,Zumba,,15,mins,1.5
 23,Abs,Abs,,10,mins,1.75
 24,Agility Drills,Agility Drills (cones/ladders),,15,mins,1.75
-25,CrossFit,CrossFit,,15,mins,1.75
-26,Hill Sprints,Hill Sprints,,10,mins,1.75
-27,Jump Roping,Jump Roping,,15,mins,1.75
-28,Kayaking/Paddling,Kayaking/Paddling,,15,mins,1.75
-29,Kickboxing,Kickboxing,,15,mins,1.75
-30,Lifting/Weight Training,Lifting/Weight Training,,15,mins,1.75
-31,P90x or Insanity Workout,P90x or Insanity Workout,,15,mins,1.75
+25,Disc Golf,Disc Golf,,15,mins,1.75
+26,CrossFit,CrossFit,,15,mins,1.75
+27,Hill Sprints,Hill Sprints,,10,mins,1.75
+28,Jump Roping,Jump Roping,,15,mins,1.75
+29,Kayaking/Paddling,Kayaking/Paddling,,15,mins,1.75
+30,Kickboxing,Kickboxing,,15,mins,1.75
+31,Lifting/Weight Training,Lifting/Weight Training,,15,mins,1.75
+32,P90x or Insanity Workout,P90x or Insanity Workout,,15,mins,1.75
 33,Plyometrics,"Plyometrics (squats, lunges, etc.)",,15,mins,1.75
 34,Rowing,Rowing,,15,mins,1.75
 35,Running,Running,,15,mins,1.75
@@ -36,6 +38,4 @@ ID,name,description,notes,increment,measurement,multiplier
 38,Sprinting/Spinning Tabatas,Sprinting/Spinning Tabatas,,4,mins,1.85
 39,Sprints,Sprints,,15,mins,1.85
 40,Track Workout,Track Workout,,15,mins,1.85
-41,Mental Strength - Yellow,Mental Strength - Repeatable (Yellow),,15,mins,2
-42,Mental Strength - Blue,Mental Strength - One time (Blue),,15,mins,3
-43,Mental Strength - Purple,"Mental Strength - One time, juicy (Purple)",,15,mins,5
+41,Throwing,Throwing,,15,mins,2
